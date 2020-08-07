@@ -1,0 +1,705 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Meng Peng">
+  <meta name="keywords" content="">
+  <title>git的安装与使用 - MENGPENG`S BLOG</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"><link rel="alternate" href="/atom.xml" title="MENGPENG`S BLOG" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>MENGEPENG | passion for life</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/pages.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-02 22:26" pubdate>
+      August 2, 2020 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k words
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19
+       minutes
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">git的安装与使用</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>本文介绍git在ubuntu上的安装与使用。</p>
+<a id="more"></a>
+
+<h2 id="git安装与配置"><a href="#git安装与配置" class="headerlink" title="git安装与配置"></a>git安装与配置</h2><p>ubuntu系统不自带git，需要自己安装：</p>
+<pre><code class="hljs bash">sudo apt-get install git</code></pre>
+
+<p>安装完成后，设置用户名和邮箱地址：</p>
+<pre><code class="hljs bash">git config --global user.name <span class="hljs-string">&quot;YOUR NAME&quot;</span>
+git config --global user.email <span class="hljs-string">&quot;YOUR EMAIL ADDRESS&quot;</span></code></pre>
+
+<h2 id="创建本地版本仓库"><a href="#创建本地版本仓库" class="headerlink" title="创建本地版本仓库"></a>创建本地版本仓库</h2><p>在库文件夹比如learngit下初始化git仓库：</p>
+<pre><code class="hljs bash">git init</code></pre>
+
+<p>在文件夹中添加文件，比如：classification.cpp，然后可以添加文件到git仓库，分两步进行：<br>第一，用git add命令告诉git，将文件添加到仓库：</p>
+<pre><code class="hljs bash">git add README.md</code></pre>
+
+<p>第二，用git commit命令告诉git，将文件提交到仓库：</p>
+<pre><code class="hljs bash">git commit -m <span class="hljs-string">&quot;add a new file&quot;</span></code></pre>
+
+<h2 id="添加到远程仓库"><a href="#添加到远程仓库" class="headerlink" title="添加到远程仓库"></a>添加到远程仓库</h2><p>git是分布式版本控制系统，同一个git仓库可以分布到不同的机器上，这儿的机器，可以指公司的git服务器或者github，下面以github为例，介绍怎样将本地git仓库添加到远程仓库。</p>
+<p>本地仓库和github的连接有两种方式：</p>
+<ul>
+<li>HTTPS连接（比如地址为：<code>https://github.com/gitusername/learngit.git</code>）</li>
+<li>SSH连接（比如地址为：<code>git@github.com:gitusername/learngit.git</code>）</li>
+</ul>
+<h3 id="HTTPS连接"><a href="#HTTPS连接" class="headerlink" title="HTTPS连接"></a>HTTPS连接</h3><p>使用HTTPS连接的不同之处在于：其一，不需要SSH key；其二，上面第一条命令地址要改为HTTP地址：</p>
+<pre><code class="hljs bash">git remote add origin https://github.com/gitusername/learngit.git</code></pre>
+
+<p>步骤简单，也是github推荐的连接方式，然而其缺点为速度比SSH连接方式慢。</p>
+<h3 id="SSH连接"><a href="#SSH连接" class="headerlink" title="SSH连接"></a>SSH连接</h3><p>SSH加密传输首先要有SSH key，生成过程包括：<br>第一步，创建SSH key。输入下面指令：</p>
+<pre><code class="hljs bash">ssh-keygen -t rsa -C <span class="hljs-string">&quot;youremail@example.com&quot;</span></code></pre>
+
+<p>之后可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。</p>
+<p>第二步，登陆GitHub，打开“Account settings”，“SSH Keys”页面，然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容。</p>
+<p>然后，在github上创建一个名为learngit的空的仓库（不包含README文件）。</p>
+<p>将本地仓库与github仓库相关联并推送内容包含下面两步：<br>第一，输入下面命令：</p>
+<pre><code class="hljs bash">git remote add origin git@github.com:gitusername/learngit.git</code></pre>
+
+<p>其中，origin代表远程库，是git的默认叫法。</p>
+<p>第二，将本地库内容推送到远程库：</p>
+<pre><code class="hljs bash">git push -u origin master</code></pre>
+
+<p>由于远程库是空的，第一次推送master分支时，加上了-u参数，git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。再次推送到远程github仓库时，输入简化的命令即可：</p>
+<pre><code class="hljs bash">git push origin master</code></pre>
+
+<h2 id="从远程仓库克隆"><a href="#从远程仓库克隆" class="headerlink" title="从远程仓库克隆"></a>从远程仓库克隆</h2><p>上一节介绍先有本地库，后有远程库的时候，如何关联远程库。假设我们从零开发，最好的方式是先创建远程库，然后，从远程库克隆到本地。</p>
+<p>首先在github上创建一个新的仓库，仓库名为learngit，这次要勾选Initialize this repository with a README。</p>
+<p>远程库已经准备好了，下一步是用命令git clone克隆一个本地库，也分两种方式。<br>SSH连接克隆命令为：</p>
+<pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> git@github.com:gitusername/learngit.git</code></pre>
+
+<p>HTTP连接克隆命令为：</p>
+<pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/gitusername/learngit.git</code></pre>
+
+<p>在本地仓库修改完代码后，推送到github库：</p>
+<pre><code class="hljs bash">git push origin master</code></pre>
+
+<hr>
+<h2 id="git常用命令"><a href="#git常用命令" class="headerlink" title="git常用命令"></a>git常用命令</h2><h3 id="常规操作"><a href="#常规操作" class="headerlink" title="常规操作"></a>常规操作</h3><pre><code class="hljs bash">git status <span class="hljs-comment"># 查看版本库状态</span>
+
+git <span class="hljs-built_in">log</span> <span class="hljs-comment"># 查看提交历史</span>
+
+git diff <span class="hljs-comment">#　比较当前工作目录与版本库的差别</span>
+
+git add file　<span class="hljs-comment"># 向版本库添加文件</span>
+
+git add directory/ <span class="hljs-comment"># 向版本库添加文件夹</span>
+
+git commit -m <span class="hljs-string">&quot;description&quot;</span> <span class="hljs-comment"># 提交并添加描述</span>
+</code></pre>
+
+<h3 id="删除文件-夹"><a href="#删除文件-夹" class="headerlink" title="删除文件(夹)"></a>删除文件(夹)</h3><pre><code class="hljs bash">git rm file <span class="hljs-comment"># 同时删除本地文件与远程分支文件</span>
+git rm --cached file <span class="hljs-comment"># 只删除远程分支文件，保留本地文件</span>
+
+git rm -r directory <span class="hljs-comment">#　同时删除本地文件夹与远程分支文件夹</span>
+git rm -r --cached directory <span class="hljs-comment"># 只删除远程分支文件夹，保留本地文件夹</span></code></pre>
+
+<h3 id="恢复到指定版本"><a href="#恢复到指定版本" class="headerlink" title="恢复到指定版本"></a>恢复到指定版本</h3><p>项目跟踪工具的一个重要任务之一，就是使我们能够随时恢复到某一阶段的工作。</p>
+<p>命令形式：</p>
+<pre><code class="hljs bash">git reset [--mixed | --soft | --hard]</code></pre>
+
+<p>其中：<br>　<code>--mixed</code> 仅是重置索引的位置，而不改变你的工作树中的任何东西，并且提示什么内容还没有被更新。这个是默认的选项。<br>　<code>--soft</code> 既不触动索引的位置，也不改变工作树中的任何内容，这个选项使你可以将已经提交的东西重新逆转至＂已更新但未提交（Updated but not Check in）＂的状态。<br>　<code>--hard</code> 将工作树中的内容和头索引都切换至指定的版本位置中，也就是说自 之后的所有的跟踪内容和工作树中的内容都会全部丢失。慎用。</p>
+<p>举例：<br>撤销上次提交（commit），保留当前所有更改：</p>
+<pre><code class="hljs bash">git reset --soft</code></pre>
+
+<p>彻底恢复到上次提交的版本，放弃当前所有更改：</p>
+<pre><code class="hljs bash">git reset --hard</code></pre>
+
+<p>彻底返回到最近两次提交之前的版本：</p>
+<pre><code class="hljs bash">git reset --hard HEAD~2</code></pre>
+
+<h3 id="管理分支"><a href="#管理分支" class="headerlink" title="管理分支"></a>管理分支</h3><p>如果项目存在多个分支就需要进行分支管理。</p>
+<p>查看分支:</p>
+<pre><code class="hljs bash">git branch</code></pre>
+
+<p>使用以下命令创建分支并将创建的分支设置为当前工作分支：</p>
+<pre><code class="hljs bash">git branch new_branch
+git checkout new_branch
+或者
+git checkout -b new_branch</code></pre>
+
+<p>删除分支：</p>
+<pre><code class="hljs bash">git branch -d new_branch <span class="hljs-comment"># 先检查分支是否合并到其他分支上，若没有合并则无法删除</span>
+git branch -D new_branch <span class="hljs-comment"># 直接删除分支，不会检查分支状态</span></code></pre>
+
+<p>查看版本库的发展记录:</p>
+<pre><code class="hljs bash">git show-branch</code></pre>
+
+<p>查看两个版本的差异情况：</p>
+<pre><code class="hljs bash">git diff B1 B2</code></pre>
+
+<p>合并其他分支到主分支上：</p>
+<pre><code class="hljs bash">git check master
+git merge -m <span class="hljs-string">&quot;merge from new_branch&quot;</span> new_branch
+或者
+git pull . new_branch</code></pre>
+
+<p>合并远程库到本地主分支：</p>
+<pre><code class="hljs bash">git pull --rebase</code></pre>
+
+<p><strong>注意：</strong> </p>
+<ul>
+<li>执行 <code>git pull --rebase</code> 的时候必须保持本地目录干净。即：不能存在状态为 modified 的文件（存在Untracked files是没关系的）。</li>
+<li>如果出现冲突，可以选择手动解决冲突后继续 rebase，也可以用 <code>git rebase --abort</code> 放弃本次 rebase。</li>
+</ul>
+<p>最后，将本地提交好的分支推送到远程仓库：</p>
+<pre><code class="hljs bash">git push origin master</code></pre>
+
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012526120/article/details/49401871">git和github在ubuntu上的使用</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/pcyph/article/details/44035935">git回到指定版本命令</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/6844903895160881166">git pull –rebase的正确使用</a></li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%EF%BC%88git-svn%EF%BC%89/">版本控制（git svn）</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/git/">git</a>
+                    
+                      <a class="hover-with-bg" href="/tags/tutorial/">tutorial</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/03/svn/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">svn的安裝与使用</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/01/git-vs-svn/">
+                        <span class="hidden-mobile">git vs. svn</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      function loadDisqus() {
+        var disqus_config = function () {
+          this.page.url = 'https://mengepeng.github.io/2020/08/02/git/';
+          this.page.identifier = '/2020/08/02/git/';
+        };
+        (function () {
+          var d = document,
+            s = d.createElement('script');
+          s.src = '//' + 'https-mengepeng-github-io' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      }
+      waitElementVisible('disqus_thread', loadDisqus);
+    </script>
+    <noscript>Please enable JavaScript to view the
+      <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener noopener">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a style="font-size:13px">
+	&copy; <script>document.write(new Date().getFullYear());</script>, Content By Meng Peng. All Rights Reserved.
+      </a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            Totol visits 
+            <span id="busuanzi_value_site_pv"></span>
+             
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            Total visitors 
+            <span id="busuanzi_value_site_uv"></span>
+             
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "git的安装与使用&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 60,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+  <script>(function (i, s, o, g, r, a, m) {
+      i['DaoVoiceObject'] = r;
+      i[r] = i[r] ||
+        function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        };
+      i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      a.charset = 'utf-8';
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/bb4fe40f.js", 'daovoice');
+    daovoice('init', {
+      app_id: "bb4fe40f",
+    });
+    daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

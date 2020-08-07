@@ -1,0 +1,18 @@
+<footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a style="font-size:13px">
+	&copy; <script>document.write(new Date().getFullYear());</script>, Content By <%- config.author %>. All Rights Reserved.
+      </a>
+    </div>
+    <%- partial('_partial/statistics.ejs') %>
+    <%- partial('_partial/beian.ejs') %>
+    <% if(theme.web_analytics.cnzz) { %>
+      <!-- cnzz Analytics Icon -->
+      <span id="cnzz_stat_icon_<%- theme.web_analytics.cnzz %>" style="display: none; font-size:13px"></span>
+    <% } %>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<%- partial('_partial/scripts.ejs') %>
