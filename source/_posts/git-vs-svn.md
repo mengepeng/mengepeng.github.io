@@ -4,6 +4,7 @@ date: 2020-08-01 23:55:36
 tags:
 - git
 - svn
+- introduction
 categories:
 - [版本控制（git svn）]
 ---
@@ -19,7 +20,7 @@ git是一个应用最广泛的免费的、开源的分布式版本控制系统�
 **工作流程：**
 
 下图是经典的git开发过程。
-![git process](git_process.jpg)
+![git process](git-vs-svn/git_process.jpg)
 
 **功能特性：**
 
@@ -47,7 +48,7 @@ SVN是Subversion的简称，是一个开源的版本控制系统，支持大多�
 **工作流程：**
 
 集中式管理的工作流程如下图：
-![svn process](svn_process.jpg)
+![svn process](git-vs-svn/svn_process.jpg)
 
 集中式代码管理的核心是服务器，所有开发者在开始新一天的工作之前必须从服务器获取代码，然后开发，最后解决冲突，提交。所有的版本信息都放在服务器上。如果脱离了服务器，开发者基本上可以说是无法工作的。
 

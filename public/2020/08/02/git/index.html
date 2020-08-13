@@ -51,8 +51,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.0.0"><link rel="alternate" href="/atom.xml" title="MENGPENG`S BLOG" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 5.0.0"></head>
 
 
 <body>
@@ -219,60 +218,46 @@
             <div class="markdown-body" id="post-body">
               <p>本文介绍git在ubuntu上的安装与使用。</p>
 <a id="more"></a>
-
 <h2 id="git安装与配置"><a href="#git安装与配置" class="headerlink" title="git安装与配置"></a>git安装与配置</h2><p>ubuntu系统不自带git，需要自己安装：</p>
 <pre><code class="hljs bash">sudo apt-get install git</code></pre>
-
 <p>安装完成后，设置用户名和邮箱地址：</p>
 <pre><code class="hljs bash">git config --global user.name <span class="hljs-string">&quot;YOUR NAME&quot;</span>
 git config --global user.email <span class="hljs-string">&quot;YOUR EMAIL ADDRESS&quot;</span></code></pre>
-
 <h2 id="创建本地版本仓库"><a href="#创建本地版本仓库" class="headerlink" title="创建本地版本仓库"></a>创建本地版本仓库</h2><p>在库文件夹比如learngit下初始化git仓库：</p>
 <pre><code class="hljs bash">git init</code></pre>
-
 <p>在文件夹中添加文件，比如：classification.cpp，然后可以添加文件到git仓库，分两步进行：<br>第一，用git add命令告诉git，将文件添加到仓库：</p>
 <pre><code class="hljs bash">git add README.md</code></pre>
-
 <p>第二，用git commit命令告诉git，将文件提交到仓库：</p>
 <pre><code class="hljs bash">git commit -m <span class="hljs-string">&quot;add a new file&quot;</span></code></pre>
-
 <h2 id="添加到远程仓库"><a href="#添加到远程仓库" class="headerlink" title="添加到远程仓库"></a>添加到远程仓库</h2><p>git是分布式版本控制系统，同一个git仓库可以分布到不同的机器上，这儿的机器，可以指公司的git服务器或者github，下面以github为例，介绍怎样将本地git仓库添加到远程仓库。</p>
 <p>本地仓库和github的连接有两种方式：</p>
 <ul>
 <li>HTTPS连接（比如地址为：<code>https://github.com/gitusername/learngit.git</code>）</li>
-<li>SSH连接（比如地址为：<code>git@github.com:gitusername/learngit.git</code>）</li>
+<li>SSH连接（比如地址为：<a href="mailto:`git@github.com">`git@github.com</a>:gitusername/learngit.git`）</li>
 </ul>
 <h3 id="HTTPS连接"><a href="#HTTPS连接" class="headerlink" title="HTTPS连接"></a>HTTPS连接</h3><p>使用HTTPS连接的不同之处在于：其一，不需要SSH key；其二，上面第一条命令地址要改为HTTP地址：</p>
 <pre><code class="hljs bash">git remote add origin https://github.com/gitusername/learngit.git</code></pre>
-
 <p>步骤简单，也是github推荐的连接方式，然而其缺点为速度比SSH连接方式慢。</p>
 <h3 id="SSH连接"><a href="#SSH连接" class="headerlink" title="SSH连接"></a>SSH连接</h3><p>SSH加密传输首先要有SSH key，生成过程包括：<br>第一步，创建SSH key。输入下面指令：</p>
 <pre><code class="hljs bash">ssh-keygen -t rsa -C <span class="hljs-string">&quot;youremail@example.com&quot;</span></code></pre>
-
 <p>之后可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。</p>
 <p>第二步，登陆GitHub，打开“Account settings”，“SSH Keys”页面，然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容。</p>
 <p>然后，在github上创建一个名为learngit的空的仓库（不包含README文件）。</p>
 <p>将本地仓库与github仓库相关联并推送内容包含下面两步：<br>第一，输入下面命令：</p>
 <pre><code class="hljs bash">git remote add origin git@github.com:gitusername/learngit.git</code></pre>
-
 <p>其中，origin代表远程库，是git的默认叫法。</p>
 <p>第二，将本地库内容推送到远程库：</p>
 <pre><code class="hljs bash">git push -u origin master</code></pre>
-
 <p>由于远程库是空的，第一次推送master分支时，加上了-u参数，git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。再次推送到远程github仓库时，输入简化的命令即可：</p>
 <pre><code class="hljs bash">git push origin master</code></pre>
-
 <h2 id="从远程仓库克隆"><a href="#从远程仓库克隆" class="headerlink" title="从远程仓库克隆"></a>从远程仓库克隆</h2><p>上一节介绍先有本地库，后有远程库的时候，如何关联远程库。假设我们从零开发，最好的方式是先创建远程库，然后，从远程库克隆到本地。</p>
 <p>首先在github上创建一个新的仓库，仓库名为learngit，这次要勾选Initialize this repository with a README。</p>
 <p>远程库已经准备好了，下一步是用命令git clone克隆一个本地库，也分两种方式。<br>SSH连接克隆命令为：</p>
 <pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> git@github.com:gitusername/learngit.git</code></pre>
-
 <p>HTTP连接克隆命令为：</p>
 <pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/gitusername/learngit.git</code></pre>
-
 <p>在本地仓库修改完代码后，推送到github库：</p>
 <pre><code class="hljs bash">git push origin master</code></pre>
-
 <hr>
 <h2 id="git常用命令"><a href="#git常用命令" class="headerlink" title="git常用命令"></a>git常用命令</h2><h3 id="常规操作"><a href="#常规操作" class="headerlink" title="常规操作"></a>常规操作</h3><pre><code class="hljs bash">git status <span class="hljs-comment"># 查看版本库状态</span>
 
@@ -286,56 +271,43 @@ git add directory/ <span class="hljs-comment"># 向版本库添加文件夹</spa
 
 git commit -m <span class="hljs-string">&quot;description&quot;</span> <span class="hljs-comment"># 提交并添加描述</span>
 </code></pre>
-
 <h3 id="删除文件-夹"><a href="#删除文件-夹" class="headerlink" title="删除文件(夹)"></a>删除文件(夹)</h3><pre><code class="hljs bash">git rm file <span class="hljs-comment"># 同时删除本地文件与远程分支文件</span>
 git rm --cached file <span class="hljs-comment"># 只删除远程分支文件，保留本地文件</span>
 
 git rm -r directory <span class="hljs-comment">#　同时删除本地文件夹与远程分支文件夹</span>
 git rm -r --cached directory <span class="hljs-comment"># 只删除远程分支文件夹，保留本地文件夹</span></code></pre>
-
 <h3 id="恢复到指定版本"><a href="#恢复到指定版本" class="headerlink" title="恢复到指定版本"></a>恢复到指定版本</h3><p>项目跟踪工具的一个重要任务之一，就是使我们能够随时恢复到某一阶段的工作。</p>
 <p>命令形式：</p>
 <pre><code class="hljs bash">git reset [--mixed | --soft | --hard]</code></pre>
-
 <p>其中：<br>　<code>--mixed</code> 仅是重置索引的位置，而不改变你的工作树中的任何东西，并且提示什么内容还没有被更新。这个是默认的选项。<br>　<code>--soft</code> 既不触动索引的位置，也不改变工作树中的任何内容，这个选项使你可以将已经提交的东西重新逆转至＂已更新但未提交（Updated but not Check in）＂的状态。<br>　<code>--hard</code> 将工作树中的内容和头索引都切换至指定的版本位置中，也就是说自 之后的所有的跟踪内容和工作树中的内容都会全部丢失。慎用。</p>
 <p>举例：<br>撤销上次提交（commit），保留当前所有更改：</p>
 <pre><code class="hljs bash">git reset --soft</code></pre>
-
 <p>彻底恢复到上次提交的版本，放弃当前所有更改：</p>
 <pre><code class="hljs bash">git reset --hard</code></pre>
-
 <p>彻底返回到最近两次提交之前的版本：</p>
 <pre><code class="hljs bash">git reset --hard HEAD~2</code></pre>
-
 <h3 id="管理分支"><a href="#管理分支" class="headerlink" title="管理分支"></a>管理分支</h3><p>如果项目存在多个分支就需要进行分支管理。</p>
 <p>查看分支:</p>
 <pre><code class="hljs bash">git branch</code></pre>
-
 <p>使用以下命令创建分支并将创建的分支设置为当前工作分支：</p>
 <pre><code class="hljs bash">git branch new_branch
 git checkout new_branch
 或者
 git checkout -b new_branch</code></pre>
-
 <p>删除分支：</p>
 <pre><code class="hljs bash">git branch -d new_branch <span class="hljs-comment"># 先检查分支是否合并到其他分支上，若没有合并则无法删除</span>
 git branch -D new_branch <span class="hljs-comment"># 直接删除分支，不会检查分支状态</span></code></pre>
-
 <p>查看版本库的发展记录:</p>
 <pre><code class="hljs bash">git show-branch</code></pre>
-
 <p>查看两个版本的差异情况：</p>
 <pre><code class="hljs bash">git diff B1 B2</code></pre>
-
 <p>合并其他分支到主分支上：</p>
 <pre><code class="hljs bash">git check master
 git merge -m <span class="hljs-string">&quot;merge from new_branch&quot;</span> new_branch
 或者
 git pull . new_branch</code></pre>
-
 <p>合并远程库到本地主分支：</p>
 <pre><code class="hljs bash">git pull --rebase</code></pre>
-
 <p><strong>注意：</strong> </p>
 <ul>
 <li>执行 <code>git pull --rebase</code> 的时候必须保持本地目录干净。即：不能存在状态为 modified 的文件（存在Untracked files是没关系的）。</li>
@@ -343,7 +315,6 @@ git pull . new_branch</code></pre>
 </ul>
 <p>最后，将本地提交好的分支推送到远程仓库：</p>
 <pre><code class="hljs bash">git push origin master</code></pre>
-
 <hr>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012526120/article/details/49401871">git和github在ubuntu上的使用</a></li>

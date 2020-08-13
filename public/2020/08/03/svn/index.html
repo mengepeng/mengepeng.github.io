@@ -51,8 +51,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.0.0"><link rel="alternate" href="/atom.xml" title="MENGPENG`S BLOG" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 5.0.0"></head>
 
 
 <body>
@@ -219,62 +218,27 @@
             <div class="markdown-body" id="post-body">
               <p>本文介绍如何在ubuntu上的搭建svn服务器以及如何使用svn。</p>
 <a id="more"></a>
-
-
 <h2 id="安装svn服务器软件subversion"><a href="#安装svn服务器软件subversion" class="headerlink" title="安装svn服务器软件subversion"></a>安装svn服务器软件subversion</h2><p>ubuntu系统不自带svn，需要自己安装：</p>
 <pre><code class="hljs bash">sudo apt-get install subversion</code></pre>
-
 <h2 id="创建svn目录"><a href="#创建svn目录" class="headerlink" title="创建svn目录"></a>创建svn目录</h2><p>在home下创建svn文件夹：</p>
 <pre><code class="hljs bash">sudo mkdir /home/svn</code></pre>
-
 <p>在新创建的svn文件夹下创建repo文件夹（svn的版本仓库存放目录）：</p>
 <pre><code class="hljs bash">sudo mkdir /home/svn/repo</code></pre>
-
 <h2 id="创建svn版本仓库"><a href="#创建svn版本仓库" class="headerlink" title="创建svn版本仓库"></a>创建svn版本仓库</h2><pre><code class="hljs bash">sudo svnadmin create /home/svn/repo</code></pre>
-
 <h2 id="配置svn服务器"><a href="#配置svn服务器" class="headerlink" title="配置svn服务器"></a>配置svn服务器</h2><p>创建svn用户组：</p>
 <pre><code class="hljs bash">sudo addgroup subversion</code></pre>
-
 <p>将自己（比如：peng）加入到svn用户组：</p>
 <pre><code class="hljs bash">sudo usermod -a -G subversion peng</code></pre>
-
 <p>更改权限：</p>
 <pre><code class="hljs bash">sudo chown -R peng:subversion /home/svn/repo
 sudo chmod -R g+rws /home/svn/repo</code></pre>
-
 <h2 id="访问svn服务器"><a href="#访问svn服务器" class="headerlink" title="访问svn服务器"></a>访问svn服务器</h2><p>访问svn服务器有以下几种协议，下面会一一介绍：</p>
-<table>
-  <tr>
-    <th>协议</th>
-    <th>方式</th>
-  </tr>
-  <tr>
-    <td>file://　</td>
-    <td>直接访问（在相同主机上)</td>
-  </tr>
-  <tr>
-    <td>svn://</td>
-    <td>通过svn用户协议访问</td>
-  </tr>
-  <tr>
-    <td>svn+ssh://</td>
-    <td>和svn://相同，只是通过ssh隧道</td>
-  </tr>
-  <tr>
-    <td>http:// </td>
-    <td>通过WebDAV协议访问subversion支持的Apache 2 web服务器</td>
-  </tr>
-　　<tr>
-    <td>https://</td>
-    <td>和http://次相同，只是用了SSL加密</td>
-  </tr>
-</table>
+<table><br>  <tr><br>    <th>协议</th><br>    <th>方式</th><br>  </tr><br>  <tr><br>    <td>file://　</td><br>    <td>直接访问（在相同主机上)</td><br>  </tr><br>  <tr><br>    <td>svn://</td><br>    <td>通过svn用户协议访问</td><br>  </tr><br>  <tr><br>    <td>svn+ssh://</td><br>    <td>和svn://相同，只是通过ssh隧道</td><br>  </tr><br>  <tr><br>    <td>http:// </td><br>    <td>通过WebDAV协议访问subversion支持的Apache 2 web服务器</td><br>  </tr><br>　　<tr><br>    <td>https://</td><br>    <td>和http://次相同，只是用了SSL加密</td><br>  </tr><br></table>
 
 <h3 id="file"><a href="#file" class="headerlink" title="file://"></a>file://</h3><p>不需要做任何设置，直接通过下方指令即可获取本地svn服务器仓库中的资源：</p>
 <pre><code class="hljs bash">svn co file:///home/svn/repo
 或者
 svn co file://localhost/home/svn/repo</code></pre>
-
 <h3 id="svn"><a href="#svn" class="headerlink" title="svn://"></a>svn://</h3><p>需要配置/home/svn/repo/conf目录中的文件。</p>
 <ol>
 <li>svnserve.conf: 服务配置文件：</li>
@@ -287,7 +251,6 @@ auth-access = write
 password-db = passwd
 <span class="hljs-comment">#权限文件为authz</span>
 authz-db = authz</code></pre>
-
 <ol start="2">
 <li>authz: 用户权限配置文件：</li>
 </ol>
@@ -297,7 +260,6 @@ subversion = peng <span class="hljs-comment"># subversion组的用户</span>
 [/] <span class="hljs-comment"># 必须写/，因为这表示从仓库的目录开始设置权限</span>
 @subversion = rw <span class="hljs-comment"># subversion组有rw(读写权限)</span>
 * = r <span class="hljs-comment"># 所有人有r(读权限)</span></code></pre>
-
 <ol start="3">
 <li>passwd: 用户密码配置文件：</li>
 </ol>
@@ -305,13 +267,11 @@ subversion = peng <span class="hljs-comment"># subversion组的用户</span>
  <span class="hljs-comment"># harry = harryssecret</span>
  <span class="hljs-comment"># sally = sallyssecret</span>
 peng = 12345 <span class="hljs-comment"># 设定用户peng的密码是12345，是的没错，密码是明文的。</span></code></pre>
-
 <p>启动svn服务器：</p>
 <pre><code class="hljs bash">svnserve -d -r /home/svn/repo</code></pre>
 <p>(-d: 表示在守护模式运行，-r: 指定服务器的根目录)<br>默认端口为3690，可以根据需要自行更改或者做些其它设置，详情请见<code>svnserve --help</code>。</p>
 <p>停止svn服务器：</p>
 <pre><code class="hljs bash">killall svnserve</code></pre>
-
 <p>开机默认启动：</p>
 <p>可以添加一个自动启动脚本<code>/etc/init.d/subversion</code>，设置 svn 服务开机默认启动。</p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/sh</span>
@@ -357,27 +317,20 @@ OPTIONS=<span class="hljs-string">&quot;-d -T -r /home/svn/repo&quot;</span>
 <span class="hljs-keyword">esac</span>
 
 <span class="hljs-built_in">exit</span> 0</code></pre>
-
 <p>添加执行权限：</p>
 <pre><code class="hljs bash">sudo chmod u+x /etc/init.d/subversion</code></pre>
-
 <p>测试一下从脚本启动：</p>
 <pre><code class="hljs bash">sudo /etc/init.d/subversion start</code></pre>
-
 <p>将此脚本设置为开机默认启动：</p>
 <pre><code class="hljs bash">sudo update-rc.d -f subversion defaults</code></pre>
-
 <p>在svnserve已开启的情况下，通过下方指令获取svn服务器仓库中的资源：</p>
 <pre><code class="hljs bash">svn co svn://hostname repo --username peng</code></pre>
-
 <h3 id="svn-ssh"><a href="#svn-ssh" class="headerlink" title="svn+ssh://"></a>svn+ssh://</h3><p>设置同svn://，在ssh服务已经打开的情况下，通过下方指令即可获取svn服务器仓库中的资源：</p>
 <pre><code class="hljs bash">svn co svn+ssh://hostname/home/svn/repo repo --username peng</code></pre>
-
 <p>注意：这里必须加上仓库的完整路径（/home/svn/repo）, 而svn://方式则不用。</p>
 <h3 id="http"><a href="#http" class="headerlink" title="http://"></a>http://</h3><p>需要安装并配置Apache2 web server。</p>
 <p>安装Apache2：</p>
 <pre><code class="hljs bash">sudo apt-get install apache2</code></pre>
-
 <p>配置Apache2：</p>
 <p>在<code>etc/apache2/mods_available/dav_svn.conf</code>文件中添加以下代码：</p>
 <pre><code class="hljs bash">&lt;Location /home/svn/repo&gt;
@@ -388,48 +341,35 @@ OPTIONS=<span class="hljs-string">&quot;-d -T -r /home/svn/repo&quot;</span>
     AuthUserFile /etc/subversion/passwd
     Require valid-user
 &lt;/Location&gt;</code></pre>
-
 <p>添加Apache2用户www-data并加入到subversion组中：</p>
 <pre><code class="hljs bash">sudo adduser www-data subversion</code></pre>
-
 <p>重启Apache2服务：</p>
 <pre><code class="hljs bash">sudo /etc/init.d/apache2 restart</code></pre>
-
 <p>创建用户和密码文件（<code>/etc/subversion/passwd</code>）：</p>
 <pre><code class="hljs bash">sudo htpasswd -c /etc/subversion/passwd peng</code></pre>
-<p>按照提示输入密码即可。<br>通过下面的命令可添加新用户（new_user）：</p>
-<pre><code class="hljs bash">sudo htpasswd /etc/subversion/passwd new_user</code></pre>
-
+<p>按照提示输入密码即可。<br>通过下面的命令可添加新用户（new_user）：<br><pre><code class="hljs bash">sudo htpasswd /etc/subversion/passwd new_user</code></pre></p>
 <p>配置完成，通过下方指令即可获取svn服务器仓库中的资源：</p>
 <pre><code class="hljs bash">svn co http://hostname/home/svn/repo repo --username peng</code></pre>
-
 <h3 id="https"><a href="#https" class="headerlink" title="https://"></a>https://</h3><p>设置同http://，但是需要为Apache2配置支持https的数字证书（略）。</p>
 <p>然后通过下方指令即可获取svn服务器仓库中的资源：</p>
 <pre><code class="hljs bash">svn co https://hostname/home/svn/repo repo --username peng</code></pre>
-
 <h2 id="RabbitVCS"><a href="#RabbitVCS" class="headerlink" title="RabbitVCS"></a>RabbitVCS</h2><p>RabbitVCS是Linux平台下版本控制程序Subversion的GUI前端客户端，使用Python构建，可以与文件管理器Nautilus紧密整合，支持 Subversion(SVN), Git。可替代Windows下的TortoiseSVN。</p>
-<p>Ubuntu用户安装:</p>
-<pre><code class="hljs bash">sudo add-apt-repository ppa:rabbitvcs/ppa
+<p>Ubuntu用户安装:<br><pre><code class="hljs bash">sudo add-apt-repository ppa:rabbitvcs/ppa
 sudo apt-get update
-sudo apt-get install rabbitvcs-core rabbitvcs-cli rabbitvcs-nautilus rabbitvcs-gedit</code></pre>
-
+sudo apt-get install rabbitvcs-core rabbitvcs-cli rabbitvcs-nautilus rabbitvcs-gedit</code></pre></p>
 <p>最后输入以下命令重启Nautilus就可以使用RabbitVCS了。</p>
 <pre><code class="hljs bash">nautilus -q
 nautilus</code></pre>
-
 <hr>
 <h2 id="svn常用命令"><a href="#svn常用命令" class="headerlink" title="svn常用命令"></a>svn常用命令</h2><p>以下访问服务器方式均以file:///home/svn/repo为例。</p>
 <p><strong><code>import</code></strong>: 将项目上传到svn服务器，跟commit对应，是将未版本化的文件导入版本库中的最快方法，它会根据需要创建中介目录。</p>
 <pre><code class="hljs bash">svn import myrepo file:///home/svn/repo -m <span class="hljs-string">&quot;Initial import&quot;</span></code></pre>
-
 <p><strong><code>export</code></strong>: 将项目从服务器导出到本地，跟checkout对应，但是导出的文件夹不含.svn目录，脱离svn版本控制。</p>
 <pre><code class="hljs bash">svn <span class="hljs-built_in">export</span> -r version file:///home/svn/repo</code></pre>
 <p>（通过 <em><code>-r version</code></em> 导出指定版本，不加则默认导出最新版本。）</p>
-<p><strong><code>checkout</code></strong>: 从服务器仓库下载项目到本地，成为本地工作副本。</p>
-<pre><code class="hljs bash">svn checkout file:///home/svn/repo -r version
+<p><strong><code>checkout</code></strong>: 从服务器仓库下载项目到本地，成为本地工作副本。<br><pre><code class="hljs bash">svn checkout file:///home/svn/repo -r version
 或者
-svn co -r version file:///home/svn/repo</code></pre>
-<p>（通过 <em><code>-r version</code></em> 导出指定版本，不加则默认下载最新版本。）</p>
+svn co -r version file:///home/svn/repo</code></pre><br>（通过 <em><code>-r version</code></em> 导出指定版本，不加则默认下载最新版本。）</p>
 <p><strong><code>trunk, branches, tags</code></strong> 三大目录：</p>
 <p>　trunk: 主干，一般把项目提交到此文件夹里面,在trunk中开发。<br>　branches: 分支，一般把那些需要打分支,但是有可能会修改的项目代码，打分支到此目录。<br>　tags: 分支，一般把那些阶段性(如迭代各期)的项目代码,打分支到此目录。</p>
 <p>新建的svn仓库中没有这三个文件夹，可通过下面两种方式创建：</p>
@@ -438,27 +378,22 @@ svn co -r version file:///home/svn/repo</code></pre>
 </ol>
 <pre><code class="hljs bash">svn mkdir trunk tags branches
 svn commit -m　<span class="hljs-string">&quot;Creating trunk, tags, branches&quot;</span></code></pre>
-
 <ol start="2">
 <li>如果不想将项目整个下载到本地，也可以直接使用一条命令创建并提交目录到svn服务器：</li>
 </ol>
 <pre><code class="hljs bash">svn mkdir file:///home/svn/repo/trunk -m <span class="hljs-string">&quot;Creating trunk dir&quot;</span></code></pre>
-
 <p>另外两个目录使用同样的方式进行创建并提交。</p>
 <p><strong><code>status</code></strong>: 查看工作副本状态。</p>
 <pre><code class="hljs bash">svn status</code></pre>
-
 <p>第一列表示文件的状态：<br>　，没有修订<br>　A，添加<br>　C，冲突，需要解决冲突状态，才能正常提交代码<br>　D，删除<br>　I，忽略<br>　M，有修改<br>　?，没有版本控制，在工作副本添加文件或目录之后，需要使用svn add your_path才能加该文件加到版本控制<br>　!，文件丢失，如果不是使用svn delete删除文件或目录，会产生此状态</p>
 <p><strong><code>info</code></strong>: 查看工作副本信息。</p>
 <pre><code class="hljs bash">svn info</code></pre>
 <p>能够查看到本工作副本的url、版本等信息。</p>
 <p><strong><code>update</code></strong>: 升级到新版本。</p>
 <pre><code class="hljs bash">svn update -r verison</code></pre>
-
 <p><strong><code>add</code></strong>: 添加新文件或者目录到版本控制。</p>
 <pre><code class="hljs bash">svn add file
 svn add dir</code></pre>
-
 <p><strong><code>delete</code></strong>: 删除文件或目录。</p>
 <pre><code class="hljs bash">svn delete file
 svn delete dir</code></pre>
@@ -469,10 +404,8 @@ svn delete dir</code></pre>
 <p><strong><code>merge</code></strong>: 合并代码。</p>
 <pre><code class="hljs bash">svn merge -r ver1:ver2 src_url working_copy_path</code></pre>
 <p>可将任意版本的任意修订合并到工作副本中。如果ver1小于ver2，表示合并src_url分支ver1到ver2的修订到本地工作副本；如果ver1大于ver2，表示回退修订。</p>
-<p><strong><code>revert</code></strong>: 回退工作副本的修订。</p>
-<pre><code class="hljs bash">svn revert file
-svn revert -R dir</code></pre>
-
+<p><strong><code>revert</code></strong>: 回退工作副本的修订。<br><pre><code class="hljs bash">svn revert file
+svn revert -R dir</code></pre></p>
 <p><strong><code>log</code></strong>: 查看版本log。</p>
 <pre><code class="hljs bash">svn <span class="hljs-built_in">log</span> [OPTIONS] [FILE_LIST]</code></pre>
 <p>默认只查看工作副本及以前版本的log，可以使用参数过滤得到我们想要的内容，详情请见 <em><code>svn log --help</code></em> 。</p>
@@ -500,9 +433,9 @@ svn revert -R dir</code></pre>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/svn/">svn</a>
-                    
                       <a class="hover-with-bg" href="/tags/tutorial/">tutorial</a>
+                    
+                      <a class="hover-with-bg" href="/tags/svn/">svn</a>
                     
                   </div>
                 
@@ -514,6 +447,12 @@ svn revert -R dir</code></pre>
                 <div class="post-prevnext row">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2020/08/13/Machine-Learning/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">机器学习（Machine Learning）学习总结</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

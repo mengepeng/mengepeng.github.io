@@ -1,14 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>机器学习（Machine Learning）学习总结</title>
+    <url>/2020/08/13/Machine-Learning/</url>
+    <content><![CDATA[<p>人工智能（Artificial Intelligence）、机器学习（Machine Learning）、深度学习（Deep Learning）、神经网络（Neutral Network）等等这些专业术语在平时学习和工作中经常出现，但有时感觉似懂非懂，傻傻分不清楚，所以决定在此简单的总结一下。</p>
+<a id="more"></a>
+<h2 id="人工智能（Artificial-Intelligence）"><a href="#人工智能（Artificial-Intelligence）" class="headerlink" title="人工智能（Artificial Intelligence）"></a>人工智能（Artificial Intelligence）</h2><h2 id="机器学习（Machine-Learning）"><a href="#机器学习（Machine-Learning）" class="headerlink" title="机器学习（Machine Learning）"></a>机器学习（Machine Learning）</h2><h2 id="深度学习（Deep-Learning）"><a href="#深度学习（Deep-Learning）" class="headerlink" title="深度学习（Deep Learning）"></a>深度学习（Deep Learning）</h2><pre><code class="hljs bash"></code></pre>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="https://towardsdatascience.com/understanding-neural-networks-from-neuron-to-rnn-cnn-and-deep-learning-cd88e90e0a90">Understanding Neutral Networks</a></li>
+<li></li>
+</ol>
+]]></content>
+      <categories>
+        <category>机器学习（machine learning）</category>
+      </categories>
+      <tags>
+        <tag>machine Learning</tag>
+        <tag>introduction</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git的安装与使用</title>
+    <url>/2020/08/02/git/</url>
+    <content><![CDATA[<p>本文介绍git在ubuntu上的安装与使用。</p>
+<a id="more"></a>
+<h2 id="git安装与配置"><a href="#git安装与配置" class="headerlink" title="git安装与配置"></a>git安装与配置</h2><p>ubuntu系统不自带git，需要自己安装：</p>
+<pre><code class="hljs bash">sudo apt-get install git</code></pre>
+<p>安装完成后，设置用户名和邮箱地址：</p>
+<pre><code class="hljs bash">git config --global user.name <span class="hljs-string">&quot;YOUR NAME&quot;</span>
+git config --global user.email <span class="hljs-string">&quot;YOUR EMAIL ADDRESS&quot;</span></code></pre>
+<h2 id="创建本地版本仓库"><a href="#创建本地版本仓库" class="headerlink" title="创建本地版本仓库"></a>创建本地版本仓库</h2><p>在库文件夹比如learngit下初始化git仓库：</p>
+<pre><code class="hljs bash">git init</code></pre>
+<p>在文件夹中添加文件，比如：classification.cpp，然后可以添加文件到git仓库，分两步进行：<br>第一，用git add命令告诉git，将文件添加到仓库：</p>
+<pre><code class="hljs bash">git add README.md</code></pre>
+<p>第二，用git commit命令告诉git，将文件提交到仓库：</p>
+<pre><code class="hljs bash">git commit -m <span class="hljs-string">&quot;add a new file&quot;</span></code></pre>
+<h2 id="添加到远程仓库"><a href="#添加到远程仓库" class="headerlink" title="添加到远程仓库"></a>添加到远程仓库</h2><p>git是分布式版本控制系统，同一个git仓库可以分布到不同的机器上，这儿的机器，可以指公司的git服务器或者github，下面以github为例，介绍怎样将本地git仓库添加到远程仓库。</p>
+<p>本地仓库和github的连接有两种方式：</p>
+<ul>
+<li>HTTPS连接（比如地址为：<code>https://github.com/gitusername/learngit.git</code>）</li>
+<li>SSH连接（比如地址为：<a href="mailto:`git@github.com">`git@github.com</a>:gitusername/learngit.git`）</li>
+</ul>
+<h3 id="HTTPS连接"><a href="#HTTPS连接" class="headerlink" title="HTTPS连接"></a>HTTPS连接</h3><p>使用HTTPS连接的不同之处在于：其一，不需要SSH key；其二，上面第一条命令地址要改为HTTP地址：</p>
+<pre><code class="hljs bash">git remote add origin https://github.com/gitusername/learngit.git</code></pre>
+<p>步骤简单，也是github推荐的连接方式，然而其缺点为速度比SSH连接方式慢。</p>
+<h3 id="SSH连接"><a href="#SSH连接" class="headerlink" title="SSH连接"></a>SSH连接</h3><p>SSH加密传输首先要有SSH key，生成过程包括：<br>第一步，创建SSH key。输入下面指令：</p>
+<pre><code class="hljs bash">ssh-keygen -t rsa -C <span class="hljs-string">&quot;youremail@example.com&quot;</span></code></pre>
+<p>之后可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。</p>
+<p>第二步，登陆GitHub，打开“Account settings”，“SSH Keys”页面，然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容。</p>
+<p>然后，在github上创建一个名为learngit的空的仓库（不包含README文件）。</p>
+<p>将本地仓库与github仓库相关联并推送内容包含下面两步：<br>第一，输入下面命令：</p>
+<pre><code class="hljs bash">git remote add origin git@github.com:gitusername/learngit.git</code></pre>
+<p>其中，origin代表远程库，是git的默认叫法。</p>
+<p>第二，将本地库内容推送到远程库：</p>
+<pre><code class="hljs bash">git push -u origin master</code></pre>
+<p>由于远程库是空的，第一次推送master分支时，加上了-u参数，git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。再次推送到远程github仓库时，输入简化的命令即可：</p>
+<pre><code class="hljs bash">git push origin master</code></pre>
+<h2 id="从远程仓库克隆"><a href="#从远程仓库克隆" class="headerlink" title="从远程仓库克隆"></a>从远程仓库克隆</h2><p>上一节介绍先有本地库，后有远程库的时候，如何关联远程库。假设我们从零开发，最好的方式是先创建远程库，然后，从远程库克隆到本地。</p>
+<p>首先在github上创建一个新的仓库，仓库名为learngit，这次要勾选Initialize this repository with a README。</p>
+<p>远程库已经准备好了，下一步是用命令git clone克隆一个本地库，也分两种方式。<br>SSH连接克隆命令为：</p>
+<pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> git@github.com:gitusername/learngit.git</code></pre>
+<p>HTTP连接克隆命令为：</p>
+<pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/gitusername/learngit.git</code></pre>
+<p>在本地仓库修改完代码后，推送到github库：</p>
+<pre><code class="hljs bash">git push origin master</code></pre>
+<hr>
+<h2 id="git常用命令"><a href="#git常用命令" class="headerlink" title="git常用命令"></a>git常用命令</h2><h3 id="常规操作"><a href="#常规操作" class="headerlink" title="常规操作"></a>常规操作</h3><pre><code class="hljs bash">git status <span class="hljs-comment"># 查看版本库状态</span>
+
+git <span class="hljs-built_in">log</span> <span class="hljs-comment"># 查看提交历史</span>
+
+git diff <span class="hljs-comment">#　比较当前工作目录与版本库的差别</span>
+
+git add file　<span class="hljs-comment"># 向版本库添加文件</span>
+
+git add directory/ <span class="hljs-comment"># 向版本库添加文件夹</span>
+
+git commit -m <span class="hljs-string">&quot;description&quot;</span> <span class="hljs-comment"># 提交并添加描述</span>
+</code></pre>
+<h3 id="删除文件-夹"><a href="#删除文件-夹" class="headerlink" title="删除文件(夹)"></a>删除文件(夹)</h3><pre><code class="hljs bash">git rm file <span class="hljs-comment"># 同时删除本地文件与远程分支文件</span>
+git rm --cached file <span class="hljs-comment"># 只删除远程分支文件，保留本地文件</span>
+
+git rm -r directory <span class="hljs-comment">#　同时删除本地文件夹与远程分支文件夹</span>
+git rm -r --cached directory <span class="hljs-comment"># 只删除远程分支文件夹，保留本地文件夹</span></code></pre>
+<h3 id="恢复到指定版本"><a href="#恢复到指定版本" class="headerlink" title="恢复到指定版本"></a>恢复到指定版本</h3><p>项目跟踪工具的一个重要任务之一，就是使我们能够随时恢复到某一阶段的工作。</p>
+<p>命令形式：</p>
+<pre><code class="hljs bash">git reset [--mixed | --soft | --hard]</code></pre>
+<p>其中：<br>　<code>--mixed</code> 仅是重置索引的位置，而不改变你的工作树中的任何东西，并且提示什么内容还没有被更新。这个是默认的选项。<br>　<code>--soft</code> 既不触动索引的位置，也不改变工作树中的任何内容，这个选项使你可以将已经提交的东西重新逆转至＂已更新但未提交（Updated but not Check in）＂的状态。<br>　<code>--hard</code> 将工作树中的内容和头索引都切换至指定的版本位置中，也就是说自 之后的所有的跟踪内容和工作树中的内容都会全部丢失。慎用。</p>
+<p>举例：<br>撤销上次提交（commit），保留当前所有更改：</p>
+<pre><code class="hljs bash">git reset --soft</code></pre>
+<p>彻底恢复到上次提交的版本，放弃当前所有更改：</p>
+<pre><code class="hljs bash">git reset --hard</code></pre>
+<p>彻底返回到最近两次提交之前的版本：</p>
+<pre><code class="hljs bash">git reset --hard HEAD~2</code></pre>
+<h3 id="管理分支"><a href="#管理分支" class="headerlink" title="管理分支"></a>管理分支</h3><p>如果项目存在多个分支就需要进行分支管理。</p>
+<p>查看分支:</p>
+<pre><code class="hljs bash">git branch</code></pre>
+<p>使用以下命令创建分支并将创建的分支设置为当前工作分支：</p>
+<pre><code class="hljs bash">git branch new_branch
+git checkout new_branch
+或者
+git checkout -b new_branch</code></pre>
+<p>删除分支：</p>
+<pre><code class="hljs bash">git branch -d new_branch <span class="hljs-comment"># 先检查分支是否合并到其他分支上，若没有合并则无法删除</span>
+git branch -D new_branch <span class="hljs-comment"># 直接删除分支，不会检查分支状态</span></code></pre>
+<p>查看版本库的发展记录:</p>
+<pre><code class="hljs bash">git show-branch</code></pre>
+<p>查看两个版本的差异情况：</p>
+<pre><code class="hljs bash">git diff B1 B2</code></pre>
+<p>合并其他分支到主分支上：</p>
+<pre><code class="hljs bash">git check master
+git merge -m <span class="hljs-string">&quot;merge from new_branch&quot;</span> new_branch
+或者
+git pull . new_branch</code></pre>
+<p>合并远程库到本地主分支：</p>
+<pre><code class="hljs bash">git pull --rebase</code></pre>
+<p><strong>注意：</strong> </p>
+<ul>
+<li>执行 <code>git pull --rebase</code> 的时候必须保持本地目录干净。即：不能存在状态为 modified 的文件（存在Untracked files是没关系的）。</li>
+<li>如果出现冲突，可以选择手动解决冲突后继续 rebase，也可以用 <code>git rebase --abort</code> 放弃本次 rebase。</li>
+</ul>
+<p>最后，将本地提交好的分支推送到远程仓库：</p>
+<pre><code class="hljs bash">git push origin master</code></pre>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="https://blog.csdn.net/u012526120/article/details/49401871">git和github在ubuntu上的使用</a></li>
+<li><a href="https://blog.csdn.net/pcyph/article/details/44035935">git回到指定版本命令</a></li>
+<li><a href="https://juejin.im/post/6844903895160881166">git pull –rebase的正确使用</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>版本控制（git svn）</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>tutorial</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello Hexo</title>
+    <url>/2020/07/29/hello-hexo/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<a id="more"></a>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span></code></pre>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="hljs bash">$ hexo server</code></pre>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="hljs bash">$ hexo generate</code></pre>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="hljs bash">$ hexo deploy</code></pre>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>tutorial</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>git vs. svn</title>
     <url>/2020/08/01/git-vs-svn/</url>
     <content><![CDATA[<p>本文主要介绍git和svn的区别与作用。</p>
 <a id="more"></a>
-
 <h2 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h2><p>git是一个应用最广泛的免费的、开源的分布式版本控制系统，github是最常用的提供远程git仓库托管服务的网站。git与常用的集中式版本控制工具Subversion(svn)不同，它采用了分布式版本库的方法，不依赖服务器端软件支持，其最大特点在于开发者可以提交到本地，每个开发者通过克隆（git clone），在本地拷贝一个完整的git仓库。</p>
 <p><strong>工作流程：</strong></p>
-<p>下图是经典的git开发过程。<br><img src="git_process.jpg" alt="git process"></p>
+<p>下图是经典的git开发过程。<br><img src="/2020/08/01/git-vs-svn/git_process.jpg" alt="git process"></p>
 <p><strong>功能特性：</strong></p>
 <p>从一般开发者的角度来看，git有以下功能：</p>
 <p>　1．从服务器上克隆完整的Git仓库（包括代码和版本信息）到单机上。<br>　2．在自己的机器上根据不同的开发目的，创建分支，修改代码。<br>　3．在单机上自己创建的分支上提交代码。<br>　4．在单机上合并分支。<br>　5．把服务器上最新版的代码fetch下来，然后跟自己的主分支合并。<br>　6．生成补丁（patch），把补丁发送给主开发者。<br>　7．看主开发者的反馈，如果主开发者发现两个一般开发者之间有冲突（他们之间可以合作解决的冲突），就会要求他们先解决冲突，然后再由其中一个人提交。如果主开发者可以自己解决，或者没有冲突，就通过。<br>　8．一般开发者之间解决冲突的方法，开发者之间可以使用pull 命令解决冲突，解决完冲突之后再向主开发者提交补丁。</p>
@@ -16,7 +173,7 @@
 <p>　1．查看邮件或者通过其它方式查看一般开发者的提交状态。<br>　2．打上补丁，解决冲突（可以自己解决，也可以要求开发者之间解决以后再重新提交，如果是开源项目，还要决定哪些补丁有用，哪些不用）。<br>　3．向公共服务器提交结果，然后通知所有开发人员。 </p>
 <h2 id="SVN"><a href="#SVN" class="headerlink" title="SVN"></a>SVN</h2><p>SVN是Subversion的简称，是一个开源的版本控制系统，支持大多数常见的操作系统。作为一个开源的版本控制系统，Subversion管理着随时间改变的数据，这些数据放置在一个中央资料档案库（repository）中，这个档案库很像一个普通的文件服务器,不过它会记住每一次文件的变动，这样你就可以把档案恢复到旧的版本，或是浏览文件的变动历史。Subversion是一个通用的系统,可用来管理任何类型的文件，其中包括程序源码。</p>
 <p><strong>工作流程：</strong></p>
-<p>集中式管理的工作流程如下图：<br><img src="svn_process.jpg" alt="svn process"></p>
+<p>集中式管理的工作流程如下图：<br><img src="/2020/08/01/git-vs-svn/svn_process.jpg" alt="svn process"></p>
 <p>集中式代码管理的核心是服务器，所有开发者在开始新一天的工作之前必须从服务器获取代码，然后开发，最后解决冲突，提交。所有的版本信息都放在服务器上。如果脱离了服务器，开发者基本上可以说是无法工作的。</p>
 <p><strong>功能特性：</strong></p>
 <p>　1．从服务器下载项目组最新代码。<br>　2．进入自己的分支，进行工作，每隔一个小时向服务器自己的分支提交一次代码（很多人都有这个习惯，因为有时候自己对代码改来改去，最后又想还原到前一个小时的版本，或者看看前一个小时自己修改了哪些代码，就需要这样做了）。<br>　3．下班时间快到了，把自己的分支合并到服务器主分支上，一天的工作完成，并反映给服务器。</p>
@@ -50,179 +207,9 @@
         <category>版本控制（git svn）</category>
       </categories>
       <tags>
+        <tag>introduction</tag>
         <tag>git</tag>
         <tag>svn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git的安装与使用</title>
-    <url>/2020/08/02/git/</url>
-    <content><![CDATA[<p>本文介绍git在ubuntu上的安装与使用。</p>
-<a id="more"></a>
-
-<h2 id="git安装与配置"><a href="#git安装与配置" class="headerlink" title="git安装与配置"></a>git安装与配置</h2><p>ubuntu系统不自带git，需要自己安装：</p>
-<pre><code class="hljs bash">sudo apt-get install git</code></pre>
-
-<p>安装完成后，设置用户名和邮箱地址：</p>
-<pre><code class="hljs bash">git config --global user.name <span class="hljs-string">&quot;YOUR NAME&quot;</span>
-git config --global user.email <span class="hljs-string">&quot;YOUR EMAIL ADDRESS&quot;</span></code></pre>
-
-<h2 id="创建本地版本仓库"><a href="#创建本地版本仓库" class="headerlink" title="创建本地版本仓库"></a>创建本地版本仓库</h2><p>在库文件夹比如learngit下初始化git仓库：</p>
-<pre><code class="hljs bash">git init</code></pre>
-
-<p>在文件夹中添加文件，比如：classification.cpp，然后可以添加文件到git仓库，分两步进行：<br>第一，用git add命令告诉git，将文件添加到仓库：</p>
-<pre><code class="hljs bash">git add README.md</code></pre>
-
-<p>第二，用git commit命令告诉git，将文件提交到仓库：</p>
-<pre><code class="hljs bash">git commit -m <span class="hljs-string">&quot;add a new file&quot;</span></code></pre>
-
-<h2 id="添加到远程仓库"><a href="#添加到远程仓库" class="headerlink" title="添加到远程仓库"></a>添加到远程仓库</h2><p>git是分布式版本控制系统，同一个git仓库可以分布到不同的机器上，这儿的机器，可以指公司的git服务器或者github，下面以github为例，介绍怎样将本地git仓库添加到远程仓库。</p>
-<p>本地仓库和github的连接有两种方式：</p>
-<ul>
-<li>HTTPS连接（比如地址为：<code>https://github.com/gitusername/learngit.git</code>）</li>
-<li>SSH连接（比如地址为：<code>git@github.com:gitusername/learngit.git</code>）</li>
-</ul>
-<h3 id="HTTPS连接"><a href="#HTTPS连接" class="headerlink" title="HTTPS连接"></a>HTTPS连接</h3><p>使用HTTPS连接的不同之处在于：其一，不需要SSH key；其二，上面第一条命令地址要改为HTTP地址：</p>
-<pre><code class="hljs bash">git remote add origin https://github.com/gitusername/learngit.git</code></pre>
-
-<p>步骤简单，也是github推荐的连接方式，然而其缺点为速度比SSH连接方式慢。</p>
-<h3 id="SSH连接"><a href="#SSH连接" class="headerlink" title="SSH连接"></a>SSH连接</h3><p>SSH加密传输首先要有SSH key，生成过程包括：<br>第一步，创建SSH key。输入下面指令：</p>
-<pre><code class="hljs bash">ssh-keygen -t rsa -C <span class="hljs-string">&quot;youremail@example.com&quot;</span></code></pre>
-
-<p>之后可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。</p>
-<p>第二步，登陆GitHub，打开“Account settings”，“SSH Keys”页面，然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容。</p>
-<p>然后，在github上创建一个名为learngit的空的仓库（不包含README文件）。</p>
-<p>将本地仓库与github仓库相关联并推送内容包含下面两步：<br>第一，输入下面命令：</p>
-<pre><code class="hljs bash">git remote add origin git@github.com:gitusername/learngit.git</code></pre>
-
-<p>其中，origin代表远程库，是git的默认叫法。</p>
-<p>第二，将本地库内容推送到远程库：</p>
-<pre><code class="hljs bash">git push -u origin master</code></pre>
-
-<p>由于远程库是空的，第一次推送master分支时，加上了-u参数，git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。再次推送到远程github仓库时，输入简化的命令即可：</p>
-<pre><code class="hljs bash">git push origin master</code></pre>
-
-<h2 id="从远程仓库克隆"><a href="#从远程仓库克隆" class="headerlink" title="从远程仓库克隆"></a>从远程仓库克隆</h2><p>上一节介绍先有本地库，后有远程库的时候，如何关联远程库。假设我们从零开发，最好的方式是先创建远程库，然后，从远程库克隆到本地。</p>
-<p>首先在github上创建一个新的仓库，仓库名为learngit，这次要勾选Initialize this repository with a README。</p>
-<p>远程库已经准备好了，下一步是用命令git clone克隆一个本地库，也分两种方式。<br>SSH连接克隆命令为：</p>
-<pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> git@github.com:gitusername/learngit.git</code></pre>
-
-<p>HTTP连接克隆命令为：</p>
-<pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/gitusername/learngit.git</code></pre>
-
-<p>在本地仓库修改完代码后，推送到github库：</p>
-<pre><code class="hljs bash">git push origin master</code></pre>
-
-<hr>
-<h2 id="git常用命令"><a href="#git常用命令" class="headerlink" title="git常用命令"></a>git常用命令</h2><h3 id="常规操作"><a href="#常规操作" class="headerlink" title="常规操作"></a>常规操作</h3><pre><code class="hljs bash">git status <span class="hljs-comment"># 查看版本库状态</span>
-
-git <span class="hljs-built_in">log</span> <span class="hljs-comment"># 查看提交历史</span>
-
-git diff <span class="hljs-comment">#　比较当前工作目录与版本库的差别</span>
-
-git add file　<span class="hljs-comment"># 向版本库添加文件</span>
-
-git add directory/ <span class="hljs-comment"># 向版本库添加文件夹</span>
-
-git commit -m <span class="hljs-string">&quot;description&quot;</span> <span class="hljs-comment"># 提交并添加描述</span>
-</code></pre>
-
-<h3 id="删除文件-夹"><a href="#删除文件-夹" class="headerlink" title="删除文件(夹)"></a>删除文件(夹)</h3><pre><code class="hljs bash">git rm file <span class="hljs-comment"># 同时删除本地文件与远程分支文件</span>
-git rm --cached file <span class="hljs-comment"># 只删除远程分支文件，保留本地文件</span>
-
-git rm -r directory <span class="hljs-comment">#　同时删除本地文件夹与远程分支文件夹</span>
-git rm -r --cached directory <span class="hljs-comment"># 只删除远程分支文件夹，保留本地文件夹</span></code></pre>
-
-<h3 id="恢复到指定版本"><a href="#恢复到指定版本" class="headerlink" title="恢复到指定版本"></a>恢复到指定版本</h3><p>项目跟踪工具的一个重要任务之一，就是使我们能够随时恢复到某一阶段的工作。</p>
-<p>命令形式：</p>
-<pre><code class="hljs bash">git reset [--mixed | --soft | --hard]</code></pre>
-
-<p>其中：<br>　<code>--mixed</code> 仅是重置索引的位置，而不改变你的工作树中的任何东西，并且提示什么内容还没有被更新。这个是默认的选项。<br>　<code>--soft</code> 既不触动索引的位置，也不改变工作树中的任何内容，这个选项使你可以将已经提交的东西重新逆转至＂已更新但未提交（Updated but not Check in）＂的状态。<br>　<code>--hard</code> 将工作树中的内容和头索引都切换至指定的版本位置中，也就是说自 之后的所有的跟踪内容和工作树中的内容都会全部丢失。慎用。</p>
-<p>举例：<br>撤销上次提交（commit），保留当前所有更改：</p>
-<pre><code class="hljs bash">git reset --soft</code></pre>
-
-<p>彻底恢复到上次提交的版本，放弃当前所有更改：</p>
-<pre><code class="hljs bash">git reset --hard</code></pre>
-
-<p>彻底返回到最近两次提交之前的版本：</p>
-<pre><code class="hljs bash">git reset --hard HEAD~2</code></pre>
-
-<h3 id="管理分支"><a href="#管理分支" class="headerlink" title="管理分支"></a>管理分支</h3><p>如果项目存在多个分支就需要进行分支管理。</p>
-<p>查看分支:</p>
-<pre><code class="hljs bash">git branch</code></pre>
-
-<p>使用以下命令创建分支并将创建的分支设置为当前工作分支：</p>
-<pre><code class="hljs bash">git branch new_branch
-git checkout new_branch
-或者
-git checkout -b new_branch</code></pre>
-
-<p>删除分支：</p>
-<pre><code class="hljs bash">git branch -d new_branch <span class="hljs-comment"># 先检查分支是否合并到其他分支上，若没有合并则无法删除</span>
-git branch -D new_branch <span class="hljs-comment"># 直接删除分支，不会检查分支状态</span></code></pre>
-
-<p>查看版本库的发展记录:</p>
-<pre><code class="hljs bash">git show-branch</code></pre>
-
-<p>查看两个版本的差异情况：</p>
-<pre><code class="hljs bash">git diff B1 B2</code></pre>
-
-<p>合并其他分支到主分支上：</p>
-<pre><code class="hljs bash">git check master
-git merge -m <span class="hljs-string">&quot;merge from new_branch&quot;</span> new_branch
-或者
-git pull . new_branch</code></pre>
-
-<p>合并远程库到本地主分支：</p>
-<pre><code class="hljs bash">git pull --rebase</code></pre>
-
-<p><strong>注意：</strong> </p>
-<ul>
-<li>执行 <code>git pull --rebase</code> 的时候必须保持本地目录干净。即：不能存在状态为 modified 的文件（存在Untracked files是没关系的）。</li>
-<li>如果出现冲突，可以选择手动解决冲突后继续 rebase，也可以用 <code>git rebase --abort</code> 放弃本次 rebase。</li>
-</ul>
-<p>最后，将本地提交好的分支推送到远程仓库：</p>
-<pre><code class="hljs bash">git push origin master</code></pre>
-
-<hr>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
-<li><a href="https://blog.csdn.net/u012526120/article/details/49401871">git和github在ubuntu上的使用</a></li>
-<li><a href="https://blog.csdn.net/pcyph/article/details/44035935">git回到指定版本命令</a></li>
-<li><a href="https://juejin.im/post/6844903895160881166">git pull –rebase的正确使用</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>版本控制（git svn）</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>tutorial</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello Hexo</title>
-    <url>/2020/07/29/hello-hexo/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<a id="more"></a>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="hljs bash">$ hexo server</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="hljs bash">$ hexo generate</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="hljs bash">$ hexo deploy</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>tutorial</tag>
       </tags>
   </entry>
   <entry>
@@ -230,62 +217,27 @@ git pull . new_branch</code></pre>
     <url>/2020/08/03/svn/</url>
     <content><![CDATA[<p>本文介绍如何在ubuntu上的搭建svn服务器以及如何使用svn。</p>
 <a id="more"></a>
-
-
 <h2 id="安装svn服务器软件subversion"><a href="#安装svn服务器软件subversion" class="headerlink" title="安装svn服务器软件subversion"></a>安装svn服务器软件subversion</h2><p>ubuntu系统不自带svn，需要自己安装：</p>
 <pre><code class="hljs bash">sudo apt-get install subversion</code></pre>
-
 <h2 id="创建svn目录"><a href="#创建svn目录" class="headerlink" title="创建svn目录"></a>创建svn目录</h2><p>在home下创建svn文件夹：</p>
 <pre><code class="hljs bash">sudo mkdir /home/svn</code></pre>
-
 <p>在新创建的svn文件夹下创建repo文件夹（svn的版本仓库存放目录）：</p>
 <pre><code class="hljs bash">sudo mkdir /home/svn/repo</code></pre>
-
 <h2 id="创建svn版本仓库"><a href="#创建svn版本仓库" class="headerlink" title="创建svn版本仓库"></a>创建svn版本仓库</h2><pre><code class="hljs bash">sudo svnadmin create /home/svn/repo</code></pre>
-
 <h2 id="配置svn服务器"><a href="#配置svn服务器" class="headerlink" title="配置svn服务器"></a>配置svn服务器</h2><p>创建svn用户组：</p>
 <pre><code class="hljs bash">sudo addgroup subversion</code></pre>
-
 <p>将自己（比如：peng）加入到svn用户组：</p>
 <pre><code class="hljs bash">sudo usermod -a -G subversion peng</code></pre>
-
 <p>更改权限：</p>
 <pre><code class="hljs bash">sudo chown -R peng:subversion /home/svn/repo
 sudo chmod -R g+rws /home/svn/repo</code></pre>
-
 <h2 id="访问svn服务器"><a href="#访问svn服务器" class="headerlink" title="访问svn服务器"></a>访问svn服务器</h2><p>访问svn服务器有以下几种协议，下面会一一介绍：</p>
-<table>
-  <tr>
-    <th>协议</th>
-    <th>方式</th>
-  </tr>
-  <tr>
-    <td>file://　</td>
-    <td>直接访问（在相同主机上)</td>
-  </tr>
-  <tr>
-    <td>svn://</td>
-    <td>通过svn用户协议访问</td>
-  </tr>
-  <tr>
-    <td>svn+ssh://</td>
-    <td>和svn://相同，只是通过ssh隧道</td>
-  </tr>
-  <tr>
-    <td>http:// </td>
-    <td>通过WebDAV协议访问subversion支持的Apache 2 web服务器</td>
-  </tr>
-　　<tr>
-    <td>https://</td>
-    <td>和http://次相同，只是用了SSL加密</td>
-  </tr>
-</table>
+<table><br>  <tr><br>    <th>协议</th><br>    <th>方式</th><br>  </tr><br>  <tr><br>    <td>file://　</td><br>    <td>直接访问（在相同主机上)</td><br>  </tr><br>  <tr><br>    <td>svn://</td><br>    <td>通过svn用户协议访问</td><br>  </tr><br>  <tr><br>    <td>svn+ssh://</td><br>    <td>和svn://相同，只是通过ssh隧道</td><br>  </tr><br>  <tr><br>    <td>http:// </td><br>    <td>通过WebDAV协议访问subversion支持的Apache 2 web服务器</td><br>  </tr><br>　　<tr><br>    <td>https://</td><br>    <td>和http://次相同，只是用了SSL加密</td><br>  </tr><br></table>
 
 <h3 id="file"><a href="#file" class="headerlink" title="file://"></a>file://</h3><p>不需要做任何设置，直接通过下方指令即可获取本地svn服务器仓库中的资源：</p>
 <pre><code class="hljs bash">svn co file:///home/svn/repo
 或者
 svn co file://localhost/home/svn/repo</code></pre>
-
 <h3 id="svn"><a href="#svn" class="headerlink" title="svn://"></a>svn://</h3><p>需要配置/home/svn/repo/conf目录中的文件。</p>
 <ol>
 <li>svnserve.conf: 服务配置文件：</li>
@@ -298,7 +250,6 @@ auth-access = write
 password-db = passwd
 <span class="hljs-comment">#权限文件为authz</span>
 authz-db = authz</code></pre>
-
 <ol start="2">
 <li>authz: 用户权限配置文件：</li>
 </ol>
@@ -308,7 +259,6 @@ subversion = peng <span class="hljs-comment"># subversion组的用户</span>
 [/] <span class="hljs-comment"># 必须写/，因为这表示从仓库的目录开始设置权限</span>
 @subversion = rw <span class="hljs-comment"># subversion组有rw(读写权限)</span>
 * = r <span class="hljs-comment"># 所有人有r(读权限)</span></code></pre>
-
 <ol start="3">
 <li>passwd: 用户密码配置文件：</li>
 </ol>
@@ -316,13 +266,11 @@ subversion = peng <span class="hljs-comment"># subversion组的用户</span>
  <span class="hljs-comment"># harry = harryssecret</span>
  <span class="hljs-comment"># sally = sallyssecret</span>
 peng = 12345 <span class="hljs-comment"># 设定用户peng的密码是12345，是的没错，密码是明文的。</span></code></pre>
-
 <p>启动svn服务器：</p>
 <pre><code class="hljs bash">svnserve -d -r /home/svn/repo</code></pre>
 <p>(-d: 表示在守护模式运行，-r: 指定服务器的根目录)<br>默认端口为3690，可以根据需要自行更改或者做些其它设置，详情请见<code>svnserve --help</code>。</p>
 <p>停止svn服务器：</p>
 <pre><code class="hljs bash">killall svnserve</code></pre>
-
 <p>开机默认启动：</p>
 <p>可以添加一个自动启动脚本<code>/etc/init.d/subversion</code>，设置 svn 服务开机默认启动。</p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/sh</span>
@@ -368,27 +316,20 @@ OPTIONS=<span class="hljs-string">&quot;-d -T -r /home/svn/repo&quot;</span>
 <span class="hljs-keyword">esac</span>
 
 <span class="hljs-built_in">exit</span> 0</code></pre>
-
 <p>添加执行权限：</p>
 <pre><code class="hljs bash">sudo chmod u+x /etc/init.d/subversion</code></pre>
-
 <p>测试一下从脚本启动：</p>
 <pre><code class="hljs bash">sudo /etc/init.d/subversion start</code></pre>
-
 <p>将此脚本设置为开机默认启动：</p>
 <pre><code class="hljs bash">sudo update-rc.d -f subversion defaults</code></pre>
-
 <p>在svnserve已开启的情况下，通过下方指令获取svn服务器仓库中的资源：</p>
 <pre><code class="hljs bash">svn co svn://hostname repo --username peng</code></pre>
-
 <h3 id="svn-ssh"><a href="#svn-ssh" class="headerlink" title="svn+ssh://"></a>svn+ssh://</h3><p>设置同svn://，在ssh服务已经打开的情况下，通过下方指令即可获取svn服务器仓库中的资源：</p>
 <pre><code class="hljs bash">svn co svn+ssh://hostname/home/svn/repo repo --username peng</code></pre>
-
 <p>注意：这里必须加上仓库的完整路径（/home/svn/repo）, 而svn://方式则不用。</p>
 <h3 id="http"><a href="#http" class="headerlink" title="http://"></a>http://</h3><p>需要安装并配置Apache2 web server。</p>
 <p>安装Apache2：</p>
 <pre><code class="hljs bash">sudo apt-get install apache2</code></pre>
-
 <p>配置Apache2：</p>
 <p>在<code>etc/apache2/mods_available/dav_svn.conf</code>文件中添加以下代码：</p>
 <pre><code class="hljs bash">&lt;Location /home/svn/repo&gt;
@@ -399,48 +340,35 @@ OPTIONS=<span class="hljs-string">&quot;-d -T -r /home/svn/repo&quot;</span>
     AuthUserFile /etc/subversion/passwd
     Require valid-user
 &lt;/Location&gt;</code></pre>
-
 <p>添加Apache2用户www-data并加入到subversion组中：</p>
 <pre><code class="hljs bash">sudo adduser www-data subversion</code></pre>
-
 <p>重启Apache2服务：</p>
 <pre><code class="hljs bash">sudo /etc/init.d/apache2 restart</code></pre>
-
 <p>创建用户和密码文件（<code>/etc/subversion/passwd</code>）：</p>
 <pre><code class="hljs bash">sudo htpasswd -c /etc/subversion/passwd peng</code></pre>
-<p>按照提示输入密码即可。<br>通过下面的命令可添加新用户（new_user）：</p>
-<pre><code class="hljs bash">sudo htpasswd /etc/subversion/passwd new_user</code></pre>
-
+<p>按照提示输入密码即可。<br>通过下面的命令可添加新用户（new_user）：<br><pre><code class="hljs bash">sudo htpasswd /etc/subversion/passwd new_user</code></pre></p>
 <p>配置完成，通过下方指令即可获取svn服务器仓库中的资源：</p>
 <pre><code class="hljs bash">svn co http://hostname/home/svn/repo repo --username peng</code></pre>
-
 <h3 id="https"><a href="#https" class="headerlink" title="https://"></a>https://</h3><p>设置同http://，但是需要为Apache2配置支持https的数字证书（略）。</p>
 <p>然后通过下方指令即可获取svn服务器仓库中的资源：</p>
 <pre><code class="hljs bash">svn co https://hostname/home/svn/repo repo --username peng</code></pre>
-
 <h2 id="RabbitVCS"><a href="#RabbitVCS" class="headerlink" title="RabbitVCS"></a>RabbitVCS</h2><p>RabbitVCS是Linux平台下版本控制程序Subversion的GUI前端客户端，使用Python构建，可以与文件管理器Nautilus紧密整合，支持 Subversion(SVN), Git。可替代Windows下的TortoiseSVN。</p>
-<p>Ubuntu用户安装:</p>
-<pre><code class="hljs bash">sudo add-apt-repository ppa:rabbitvcs/ppa
+<p>Ubuntu用户安装:<br><pre><code class="hljs bash">sudo add-apt-repository ppa:rabbitvcs/ppa
 sudo apt-get update
-sudo apt-get install rabbitvcs-core rabbitvcs-cli rabbitvcs-nautilus rabbitvcs-gedit</code></pre>
-
+sudo apt-get install rabbitvcs-core rabbitvcs-cli rabbitvcs-nautilus rabbitvcs-gedit</code></pre></p>
 <p>最后输入以下命令重启Nautilus就可以使用RabbitVCS了。</p>
 <pre><code class="hljs bash">nautilus -q
 nautilus</code></pre>
-
 <hr>
 <h2 id="svn常用命令"><a href="#svn常用命令" class="headerlink" title="svn常用命令"></a>svn常用命令</h2><p>以下访问服务器方式均以file:///home/svn/repo为例。</p>
 <p><strong><code>import</code></strong>: 将项目上传到svn服务器，跟commit对应，是将未版本化的文件导入版本库中的最快方法，它会根据需要创建中介目录。</p>
 <pre><code class="hljs bash">svn import myrepo file:///home/svn/repo -m <span class="hljs-string">&quot;Initial import&quot;</span></code></pre>
-
 <p><strong><code>export</code></strong>: 将项目从服务器导出到本地，跟checkout对应，但是导出的文件夹不含.svn目录，脱离svn版本控制。</p>
 <pre><code class="hljs bash">svn <span class="hljs-built_in">export</span> -r version file:///home/svn/repo</code></pre>
 <p>（通过 <em><code>-r version</code></em> 导出指定版本，不加则默认导出最新版本。）</p>
-<p><strong><code>checkout</code></strong>: 从服务器仓库下载项目到本地，成为本地工作副本。</p>
-<pre><code class="hljs bash">svn checkout file:///home/svn/repo -r version
+<p><strong><code>checkout</code></strong>: 从服务器仓库下载项目到本地，成为本地工作副本。<br><pre><code class="hljs bash">svn checkout file:///home/svn/repo -r version
 或者
-svn co -r version file:///home/svn/repo</code></pre>
-<p>（通过 <em><code>-r version</code></em> 导出指定版本，不加则默认下载最新版本。）</p>
+svn co -r version file:///home/svn/repo</code></pre><br>（通过 <em><code>-r version</code></em> 导出指定版本，不加则默认下载最新版本。）</p>
 <p><strong><code>trunk, branches, tags</code></strong> 三大目录：</p>
 <p>　trunk: 主干，一般把项目提交到此文件夹里面,在trunk中开发。<br>　branches: 分支，一般把那些需要打分支,但是有可能会修改的项目代码，打分支到此目录。<br>　tags: 分支，一般把那些阶段性(如迭代各期)的项目代码,打分支到此目录。</p>
 <p>新建的svn仓库中没有这三个文件夹，可通过下面两种方式创建：</p>
@@ -449,27 +377,22 @@ svn co -r version file:///home/svn/repo</code></pre>
 </ol>
 <pre><code class="hljs bash">svn mkdir trunk tags branches
 svn commit -m　<span class="hljs-string">&quot;Creating trunk, tags, branches&quot;</span></code></pre>
-
 <ol start="2">
 <li>如果不想将项目整个下载到本地，也可以直接使用一条命令创建并提交目录到svn服务器：</li>
 </ol>
 <pre><code class="hljs bash">svn mkdir file:///home/svn/repo/trunk -m <span class="hljs-string">&quot;Creating trunk dir&quot;</span></code></pre>
-
 <p>另外两个目录使用同样的方式进行创建并提交。</p>
 <p><strong><code>status</code></strong>: 查看工作副本状态。</p>
 <pre><code class="hljs bash">svn status</code></pre>
-
 <p>第一列表示文件的状态：<br>　，没有修订<br>　A，添加<br>　C，冲突，需要解决冲突状态，才能正常提交代码<br>　D，删除<br>　I，忽略<br>　M，有修改<br>　?，没有版本控制，在工作副本添加文件或目录之后，需要使用svn add your_path才能加该文件加到版本控制<br>　!，文件丢失，如果不是使用svn delete删除文件或目录，会产生此状态</p>
 <p><strong><code>info</code></strong>: 查看工作副本信息。</p>
 <pre><code class="hljs bash">svn info</code></pre>
 <p>能够查看到本工作副本的url、版本等信息。</p>
 <p><strong><code>update</code></strong>: 升级到新版本。</p>
 <pre><code class="hljs bash">svn update -r verison</code></pre>
-
 <p><strong><code>add</code></strong>: 添加新文件或者目录到版本控制。</p>
 <pre><code class="hljs bash">svn add file
 svn add dir</code></pre>
-
 <p><strong><code>delete</code></strong>: 删除文件或目录。</p>
 <pre><code class="hljs bash">svn delete file
 svn delete dir</code></pre>
@@ -480,10 +403,8 @@ svn delete dir</code></pre>
 <p><strong><code>merge</code></strong>: 合并代码。</p>
 <pre><code class="hljs bash">svn merge -r ver1:ver2 src_url working_copy_path</code></pre>
 <p>可将任意版本的任意修订合并到工作副本中。如果ver1小于ver2，表示合并src_url分支ver1到ver2的修订到本地工作副本；如果ver1大于ver2，表示回退修订。</p>
-<p><strong><code>revert</code></strong>: 回退工作副本的修订。</p>
-<pre><code class="hljs bash">svn revert file
-svn revert -R dir</code></pre>
-
+<p><strong><code>revert</code></strong>: 回退工作副本的修订。<br><pre><code class="hljs bash">svn revert file
+svn revert -R dir</code></pre></p>
 <p><strong><code>log</code></strong>: 查看版本log。</p>
 <pre><code class="hljs bash">svn <span class="hljs-built_in">log</span> [OPTIONS] [FILE_LIST]</code></pre>
 <p>默认只查看工作副本及以前版本的log，可以使用参数过滤得到我们想要的内容，详情请见 <em><code>svn log --help</code></em> 。</p>
@@ -499,8 +420,8 @@ svn revert -R dir</code></pre>
         <category>版本控制（git svn）</category>
       </categories>
       <tags>
-        <tag>svn</tag>
         <tag>tutorial</tag>
+        <tag>svn</tag>
       </tags>
   </entry>
 </search>
