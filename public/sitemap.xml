@@ -3,8 +3,20 @@
   
   <url>
     <loc>https://mengepeng.github.io/about/index.html</loc>
+<<<<<<< HEAD
     
     <lastmod>2020-08-17T16:04:50.178Z</lastmod>
+=======
+    
+    <lastmod>2020-08-17T12:23:56.968Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://mengepeng.github.io/2020/08/13/Machine-Learning/</loc>
+    
+    <lastmod>2020-08-16T21:54:22.280Z</lastmod>
+>>>>>>> 67a8c12c42b71f37d143383ec3d98991f478fb95
     
   </url>
   
@@ -36,6 +48,7 @@
     
   </url>
   
+<<<<<<< HEAD
   <url>
     <loc>https://mengepeng.github.io/2020/08/03/svn/</loc>
     
@@ -43,4 +56,6 @@
     
   </url>
   
+=======
+>>>>>>> 67a8c12c42b71f37d143383ec3d98991f478fb95
 </urlset>
