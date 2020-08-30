@@ -17,5 +17,5 @@ With this blog I would like to share with you something useful that I have learn
 - 好玩儿2333。
 
 ##  
-> 你不够成功，因为你不够孤独。
-> Without great solitude no serious work is possible.
+> We should consider every day lost on which we have not danced at least once.
+> 每一个不曾起舞的日子都是对生命的辜负。

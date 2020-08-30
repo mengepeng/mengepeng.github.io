@@ -2,8 +2,7 @@
 title: 机器学习（Machine Learning）学习总结
 date: 2020-08-13 13:26:02
 tags:
-- machine Learning
-- introduction
+- machine learning
 categories:
 - [机器学习（machine learning）]
 ---
