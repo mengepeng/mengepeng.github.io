@@ -1,0 +1,680 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Meng Peng">
+  <meta name="keywords" content="">
+  <title>神经网络（Neural Network) - MENGPENG`S BLOG</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>MENGEPENG | Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/pages.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-09-01 16:16" pubdate>
+      September 1, 2020 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.4k words
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      25
+       minutes
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">神经网络（Neural Network)</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>神经网络（Neural Network）是目前最火的机器学习算法，常见的深度神经网络有：卷积神经网络（CNN）、循环神经网络（RNN）等，在计算机视觉、语音交互、自然语言处理等领域发挥着重要作用。</p>
+<p>那么，神经网络到底长啥样？CNN、RNN又是啥玩意儿呢？ 下面让我们一探究竟。</p>
+<a id="more"></a>
+<h2 id="神经元"><a href="#神经元" class="headerlink" title="神经元"></a>神经元</h2><p>神经元（Neuron）是构建神经网络的最基本单元。在数学上，机器学习中的神经元就是一个数学函数的占位符（placeholder），它的工作就是对输入使用一个函数生成一个输出。</p>
+<p><img src="/2020/09/01/deep-learning/neuron.png" srcset="/img/loading.gif" alt="neuron"></p>
+<p>一个典型的神经元由以下三个部分组成：</p>
+<ul>
+<li>突触集：输入信号乘上的系数，称为<strong>权重</strong>。</li>
+<li>加法器：将加权后的输入进行求和。</li>
+<li>激活函数：相加的结果通过激活函数之后如果大于某个值就激活这个神经元，主要的激活函数有：step, sigmoid, tanh 和 ReLU。</li>
+</ul>
+<h3 id="Step函数"><a href="#Step函数" class="headerlink" title="Step函数"></a>Step函数</h3><p>数学定义如下：</p>
+<p><img src="/2020/09/01/deep-learning/step.png" srcset="/img/loading.gif" alt="step"></p>
+<p>其中，如果x的值大于等于零，则输出为1；如果x的值小于零，则输出为0。我们可以看到阶跃函数在零点是不可微的。目前，神经网络采用反向传播法和梯度下降法来计算不同层的权重。由于阶跃函数在零处是不可微的，因此它并不适用于梯度下降法，并且也不能应用在更新权重的任务上。</p>
+<p>为了解决这个问题，就引入了sigmoid函数。</p>
+<h3 id="Sigmoid函数"><a href="#Sigmoid函数" class="headerlink" title="Sigmoid函数"></a>Sigmoid函数</h3><p>数学定义如下：</p>
+<p><img src="/2020/09/01/deep-learning/sigmoid.png" srcset="/img/loading.gif" alt="sigmoid"></p>
+<p>当z或自变量趋于负无穷大时，函数的值趋于零；当z趋于正无穷大时，函数的值趋于1。需要记住的是，该函数表示因变量行为的近似值，并且是一个假设。现在问题来了，为什么我们要用sigmoid函数作为近似函数之一？有以下几个原因：</p>
+<ul>
+<li>它在可以捕获数据的非线性。虽然是一个近似的形式，但非线性的概念是模型精确的重要本质。</li>
+<li>Sigmoid函数在整个过程中是可微的，因此可以与梯度下降和反向传播方法一起使用，以计算不同层的权重。</li>
+<li>假设因变量服从sigmoid函数相当于假设自变量服从高斯分布，也就是正态分布。许多随机发生的事件都符合正态分布。</li>
+</ul>
+<p>但是，sigmoid函数存在<strong>梯度消失</strong>的问题。从图中可以看出，sigmoid函数将输入压缩到一个非常小的输出范围[0,1]，并具有非常陡峭的梯度。因此，输入空间中仍然有很大的区域，即使变化很大也只会对输出产生很小的影响。这就是梯度消失问题。这个问题随着网络层数的增加而增加，从而使神经网络的学习停滞在一定的水平上。</p>
+<h3 id="Tanh函数"><a href="#Tanh函数" class="headerlink" title="Tanh函数"></a>Tanh函数</h3><p>是sigmoid函数的缩放版本，输出范围变成了[-1,1]而不是[0,1]。</p>
+<p><img src="/2020/09/01/deep-learning/tanh.png" srcset="/img/loading.gif" alt="tanh"></p>
+<p>在某些地方使用tanh函数代替sigmoid函数的原因，通常是因为当数据分布在0周围时，其导数值更高。一个更高的梯度有助于提高学习速率。下图展示了两个函数tanh和sigmoid的导数值。</p>
+<p>对于tanh函数，当输入在[-1,1]之间时，得到的导数值在[0.42,1]之间。<br><img src="/2020/09/01/deep-learning/tanh_d.png" srcset="/img/loading.gif" alt="tanh_d"></p>
+<p>而对于sigmoid函数，当输入在[0,1]之间时，得到的导数值在[0.20,0.25]之间。<br><img src="/2020/09/01/deep-learning/sigmoid_d.png" srcset="/img/loading.gif" alt="sigmoid_d"></p>
+<p>显然，tanh函数比sigmoid函数具有更大范围的导数，因此具有一个更好的学习速率。但是，在tanh函数中，梯度消失问题依然是存在。</p>
+<h3 id="ReLU函数"><a href="#ReLU函数" class="headerlink" title="ReLU函数"></a>ReLU函数</h3><p>在深度学习模型中，修正线性单元（ReLU）是最常用的激活函数。<br>当函数输入负数时，函数输出0；输入正数时，函数输出其本身。数学表达式为f(x)=max(0, x)。</p>
+<p><img src="/2020/09/01/deep-learning/relu.png" srcset="/img/loading.gif" alt="relu"></p>
+<p><strong>Leaky ReLU</strong>是ReLU函数最常用的一种变形，对于正数输入，其输出和ReLU一样，但是对于所有负数输入，输出不再是0，而是具有一个常数斜率（小于1）。</p>
+<ul>
+<li>这个斜率是使用者在构建模型时设置的参数，通常称为α。数学表达式为f(x)=max(αx, x)。这样有一个优点，所有的输入x都能对输出产生影响，使得x中包含的信息被充分利用。</li>
+</ul>
+<p>在实践中，ReLU通常比sigmoid和tanh函数表现更好。</p>
+<h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><p>在理解一个神经网络之前，有必要去理解神经网络中的Layer(层)，一层Layer是一组有输入输出的神经元，例如，下面是一个小型神经网络。</p>
+<p><img src="/2020/09/01/deep-learning/neural_network.png" srcset="/img/loading.gif" alt="layer"></p>
+<p>网络的最左边的layer叫做输入层，最右边的layer叫做输出层(在这个例子中，只有一个节点)。中间的layer叫做隐藏层，因为其值不能在训练集中观察到。我们也可以说，我们的神经网络例子，具有3个输入单元(不包括偏置单元)，3个隐藏单元，1个输出单元。</p>
+<p>任何神经网络都至少包含1个输入层和1个输出层。隐藏层的数量在不同的网络中不同，取决于待解决问题的复杂度。</p>
+<p>须注意，每一个隐藏层可以有一个不同的激活函数，例如，在同一个神经网络中，隐藏层layer1可能使用sigmoid函数，隐藏层layer2可能使用ReLU，后续的隐藏层layer3使用tanh。激活函数的选择取决于待解决的问题以及使用的数据的类型。</p>
+<p>一个可以做精确预测的神经网络，在其中每一层的每一个神经元都学习到了确定的权重。学习权重的算法叫做反向传播。</p>
+<h2 id="深度神经网络"><a href="#深度神经网络" class="headerlink" title="深度神经网络"></a>深度神经网络</h2><p>具有超过一个隐藏曾的神经网络通常叫做深度神经网络。</p>
+<h3 id="卷积神经网络（CNN）"><a href="#卷积神经网络（CNN）" class="headerlink" title="卷积神经网络（CNN）"></a>卷积神经网络（CNN）</h3><p>卷积神经网络（<strong>C</strong>onvolutional <strong>N</strong>eural <strong>N</strong>etwork）是神经网络的一种，在计算机视觉领域应用非常广泛。它的名字来源于组成其隐藏层的种类。CNN的隐藏层通常包含卷积层，池化层，全连接层，以及归一化层。</p>
+<p><img src="/2020/09/01/deep-learning/cnn.png" srcset="/img/loading.gif" alt="cnn"></p>
+<p>先理解两个重要概念：卷积和池化。</p>
+<ul>
+<li><strong>卷积（convolution）</strong>：用非专业的表述，就是在输入信号上使用一个“滤波器”（也叫做kernel, 核）。数学上，两个函数f和g的卷积定义如下：</li>
+</ul>
+<p>$(f*g)(i)=\sum_{i=0}^m g(j)f(i-j+m/2)$</p>
+<p>在图像处理案例中，可视化一个卷积核在整个图片上滑动是非常简单的，每个像素的值都是在这个过程中改变的。</p>
+<p><img src="/2020/09/01/deep-learning/convolution.png" srcset="/img/loading.gif" alt="convolution"></p>
+<ul>
+<li><p><strong>池化(pooling)</strong>：池化是一个基于采样的离散化处理。它的目标是对输入(图片，隐藏层，输出矩阵等)进行下采样，来减小输入的维度，并且包含局部区域的特征。</p>
+<ul>
+<li>有两个主要的池化种类：max和min pooling。正如其名字表明的，max pooling是在选择区域选择中最大值，min pooling是在选择区域中选择最小值。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2020/09/01/deep-learning/pooling.png" srcset="/img/loading.gif" alt="pooling"></p>
+<p>正如我们所看到的，卷积神经网络（CNN）是一个基本的深度神经网络，它包含多个隐藏层，除之前介绍的非线性激活函数之外，这些层还使用了卷积和池化函数。</p>
+<p>当然，简单的文字加图片可能还是很难把CNN完全讲清楚。但是，好在有一位大侠Dr. Wang开发了一个叫 <strong>CNN Explainer</strong> 的在线交互可视化工具，把CNN拆开了揉碎了，告诉我们CNN究竟是怎么一回事，为什么能辨别物品。Don`t say so much, respect：<a target="_blank" rel="noopener" href="https://poloclub.github.io/cnn-explainer/">https://poloclub.github.io/cnn-explainer/</a></p>
+<h3 id="循环神经网络（RNN）"><a href="#循环神经网络（RNN）" class="headerlink" title="循环神经网络（RNN）"></a>循环神经网络（RNN）</h3><p>循环神经网络（<strong>R</strong>ecurrent <strong>N</strong>eural <strong>N</strong>etwork），正如其名，是一个非常重要的神经网络种类，在自然语言处理领域应用非常广泛。在一个普通的神经网络中，一个输入通过很多层的处理后，得到一个输出，假设了两个连续的输入是互相独立不相关的。</p>
+<p>然而这个假设在许多生活情节中并不成立。例如，如果一个人相应预测一个给定时间的股票的价格，或者相应预测一个句子中的下一个单词，考虑与之前观测信息的依赖是有必要的。</p>
+<p>RNNs被叫做循环，因为它们对于一个序列中的每一个元素执行相同的任务，它们的输出依赖于之前的计算。另一个理解RNN的角度是，认为它们有“记忆”，能够捕捉到到目前为止的计算信息。理论上，RNN能够充分利用任意长序列中的信息，但是实践上，它们被限制在可以回顾仅仅一些步骤。</p>
+<p>结构展示，一个RNN如下图所示。它可以想象成一个多层神经网络，每一层代表每一个确定时刻t的观测。</p>
+<p><img src="/2020/09/01/deep-learning/rnn.png" srcset="/img/loading.gif" alt="rnn"></p>
+<p>RNN在自然语言处理上展现了非常巨大的成功，尤其是它们的变种<strong>LSTM</strong>（Long Short Term Memory networks），它可以比RNN回顾得更多，详情请参考：<br><a target="_blank" rel="noopener" href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTM Networks</a></p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a target="_blank" rel="noopener" href="http://ibillxia.github.io/blog/2013/03/20/basics-of-neural-networks/">神经网络简介</a></li>
+<li><a target="_blank" rel="noopener" href="https://towardsdatascience.com/understanding-neural-networks-from-neuron-to-rnn-cnn-and-deep-learning-cd88e90e0a90">Understanding Neutral Networks</a></li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88machine-learning%EF%BC%89/">机器学习（machine learning）</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/neural-network/">neural network</a>
+                    
+                      <a class="hover-with-bg" href="/tags/RNN/">RNN</a>
+                    
+                      <a class="hover-with-bg" href="/tags/CNN/">CNN</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/13/Machine-Learning/">
+                        <span class="hidden-mobile">机器学习（Machine Learning）学习总结</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      function loadDisqus() {
+        var disqus_config = function () {
+          this.page.url = 'https://mengepeng.github.io/2020/09/01/deep-learning/';
+          this.page.identifier = '/2020/09/01/deep-learning/';
+        };
+        (function () {
+          var d = document,
+            s = d.createElement('script');
+          s.src = '//' + 'https-mengepeng-github-io' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      }
+      waitElementVisible('disqus_thread', loadDisqus);
+    </script>
+    <noscript>Please enable JavaScript to view the
+      <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener noopener">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a style="font-size:13px">
+	&copy; <script>document.write(new Date().getFullYear());</script>, Content By Meng Peng. All Rights Reserved.
+      </a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            Totol visits 
+            <span id="busuanzi_value_site_pv"></span>
+             
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            Total visitors 
+            <span id="busuanzi_value_site_uv"></span>
+             
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "神经网络（Neural Network)&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 60,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+  <script>(function (i, s, o, g, r, a, m) {
+      i['DaoVoiceObject'] = r;
+      i[r] = i[r] ||
+        function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        };
+      i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      a.charset = 'utf-8';
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/bb4fe40f.js", 'daovoice');
+    daovoice('init', {
+      app_id: "bb4fe40f",
+    });
+    daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

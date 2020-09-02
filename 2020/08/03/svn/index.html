@@ -1,0 +1,810 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Meng Peng">
+  <meta name="keywords" content="">
+  <title>svn的安裝与使用 - MENGPENG`S BLOG</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>MENGEPENG | Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/pages.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-03 23:55" pubdate>
+      August 3, 2020 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.1k words
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26
+       minutes
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">svn的安裝与使用</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>本文介绍如何在ubuntu上的搭建svn服务器以及如何使用svn。</p>
+<a id="more"></a>
+<h2 id="安装svn服务器软件subversion"><a href="#安装svn服务器软件subversion" class="headerlink" title="安装svn服务器软件subversion"></a>安装svn服务器软件subversion</h2><p>ubuntu系统不自带svn，需要自己安装：</p>
+<pre><code class="hljs bash">sudo apt-get install subversion</code></pre>
+<h2 id="创建svn目录"><a href="#创建svn目录" class="headerlink" title="创建svn目录"></a>创建svn目录</h2><p>在home下创建svn文件夹：</p>
+<pre><code class="hljs bash">sudo mkdir /home/svn</code></pre>
+<p>在新创建的svn文件夹下创建repo文件夹（svn的版本仓库存放目录）：</p>
+<pre><code class="hljs bash">sudo mkdir /home/svn/repo</code></pre>
+<h2 id="创建svn版本仓库"><a href="#创建svn版本仓库" class="headerlink" title="创建svn版本仓库"></a>创建svn版本仓库</h2><pre><code class="hljs bash">sudo svnadmin create /home/svn/repo</code></pre>
+<h2 id="配置svn服务器"><a href="#配置svn服务器" class="headerlink" title="配置svn服务器"></a>配置svn服务器</h2><p>创建svn用户组：</p>
+<pre><code class="hljs bash">sudo addgroup subversion</code></pre>
+<p>将自己（比如：peng）加入到svn用户组：</p>
+<pre><code class="hljs bash">sudo usermod -a -G subversion peng</code></pre>
+<p>更改权限：</p>
+<pre><code class="hljs bash">sudo chown -R peng:subversion /home/svn/repo
+sudo chmod -R g+rws /home/svn/repo</code></pre>
+<h2 id="访问svn服务器"><a href="#访问svn服务器" class="headerlink" title="访问svn服务器"></a>访问svn服务器</h2><p>访问svn服务器有以下几种协议，下面会一一介绍：</p>
+<table><br>  <tr><br>    <th>协议</th><br>    <th>方式</th><br>  </tr><br>  <tr><br>    <td>file://　</td><br>    <td>直接访问（在相同主机上)</td><br>  </tr><br>  <tr><br>    <td>svn://</td><br>    <td>通过svn用户协议访问</td><br>  </tr><br>  <tr><br>    <td>svn+ssh://</td><br>    <td>和svn://相同，只是通过ssh隧道</td><br>  </tr><br>  <tr><br>    <td>http:// </td><br>    <td>通过WebDAV协议访问subversion支持的Apache 2 web服务器</td><br>  </tr><br>　　<tr><br>    <td>https://</td><br>    <td>和http://次相同，只是用了SSL加密</td><br>  </tr><br></table>
+
+<h3 id="file"><a href="#file" class="headerlink" title="file://"></a>file://</h3><p>不需要做任何设置，直接通过下方指令即可获取本地svn服务器仓库中的资源：</p>
+<pre><code class="hljs bash">svn co file:///home/svn/repo
+或者
+svn co file://localhost/home/svn/repo</code></pre>
+<h3 id="svn"><a href="#svn" class="headerlink" title="svn://"></a>svn://</h3><p>需要配置/home/svn/repo/conf目录中的文件。</p>
+<ol>
+<li>svnserve.conf: 服务配置文件：</li>
+</ol>
+<pre><code class="hljs bash"><span class="hljs-comment">#匿名用户不可读</span>
+anon-access = none
+<span class="hljs-comment">#权限用户可写</span>
+auth-access = write
+<span class="hljs-comment">#密码文件为passwd</span>
+password-db = passwd
+<span class="hljs-comment">#权限文件为authz</span>
+authz-db = authz</code></pre>
+<ol start="2">
+<li>authz: 用户权限配置文件：</li>
+</ol>
+<pre><code class="hljs bash">[groups]
+subversion = peng <span class="hljs-comment"># subversion组的用户</span>
+
+[/] <span class="hljs-comment"># 必须写/，因为这表示从仓库的目录开始设置权限</span>
+@subversion = rw <span class="hljs-comment"># subversion组有rw(读写权限)</span>
+* = r <span class="hljs-comment"># 所有人有r(读权限)</span></code></pre>
+<ol start="3">
+<li>passwd: 用户密码配置文件：</li>
+</ol>
+<pre><code class="hljs bash">[users]
+ <span class="hljs-comment"># harry = harryssecret</span>
+ <span class="hljs-comment"># sally = sallyssecret</span>
+peng = 12345 <span class="hljs-comment"># 设定用户peng的密码是12345，是的没错，密码是明文的。</span></code></pre>
+<p>启动svn服务器：</p>
+<pre><code class="hljs bash">svnserve -d -r /home/svn/repo</code></pre>
+<p>(-d: 表示在守护模式运行，-r: 指定服务器的根目录)<br>默认端口为3690，可以根据需要自行更改或者做些其它设置，详情请见<code>svnserve --help</code>。</p>
+<p>停止svn服务器：</p>
+<pre><code class="hljs bash">killall svnserve</code></pre>
+<p>开机默认启动：</p>
+<p>可以添加一个自动启动脚本<code>/etc/init.d/subversion</code>，设置 svn 服务开机默认启动。</p>
+<pre><code class="hljs bash"><span class="hljs-meta">#!/bin/sh</span>
+
+<span class="hljs-comment"># start/stop subversion daemon</span>
+
+<span class="hljs-built_in">test</span> -f /usr/bin/svnserve || <span class="hljs-built_in">exit</span> 0
+
+OPTIONS=<span class="hljs-string">&quot;-d -T -r /home/svn/repo&quot;</span>
+
+<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> <span class="hljs-keyword">in</span>
+ start)
+  <span class="hljs-built_in">echo</span> -n <span class="hljs-string">&quot;Starting subversion daemon:&quot;</span>
+  <span class="hljs-built_in">echo</span> -n <span class="hljs-string">&quot; svnserve&quot;</span>
+  start-stop-daemon --start --quiet --oknodo --chuid root:root --<span class="hljs-built_in">exec</span> /usr/bin/svnserve -- <span class="hljs-variable">$OPTIONS</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;.&quot;</span>
+  ;;
+
+ stop)
+  <span class="hljs-built_in">echo</span> -n <span class="hljs-string">&quot;Stopping subversion daemon:&quot;</span>
+  <span class="hljs-built_in">echo</span> -n <span class="hljs-string">&quot; svnserve&quot;</span>
+  start-stop-daemon --stop --quiet --oknodo --<span class="hljs-built_in">exec</span> /usr/bin/svnserve
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;.&quot;</span>
+  ;;
+
+ reload)
+  ;;
+
+ force-reload)
+  <span class="hljs-variable">$0</span> restart
+  ;;
+
+ restart)
+  <span class="hljs-variable">$0</span> stop
+  <span class="hljs-variable">$0</span> start
+  ;;
+
+ *)
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Usage: /etc/init.d/subversion (start|stop|reload|restart)&quot;</span>
+  <span class="hljs-built_in">exit</span> 1
+  ;;
+
+<span class="hljs-keyword">esac</span>
+
+<span class="hljs-built_in">exit</span> 0</code></pre>
+<p>添加执行权限：</p>
+<pre><code class="hljs bash">sudo chmod u+x /etc/init.d/subversion</code></pre>
+<p>测试一下从脚本启动：</p>
+<pre><code class="hljs bash">sudo /etc/init.d/subversion start</code></pre>
+<p>将此脚本设置为开机默认启动：</p>
+<pre><code class="hljs bash">sudo update-rc.d -f subversion defaults</code></pre>
+<p>在svnserve已开启的情况下，通过下方指令获取svn服务器仓库中的资源：</p>
+<pre><code class="hljs bash">svn co svn://hostname repo --username peng</code></pre>
+<h3 id="svn-ssh"><a href="#svn-ssh" class="headerlink" title="svn+ssh://"></a>svn+ssh://</h3><p>设置同svn://，在ssh服务已经打开的情况下，通过下方指令即可获取svn服务器仓库中的资源：</p>
+<pre><code class="hljs bash">svn co svn+ssh://hostname/home/svn/repo repo --username peng</code></pre>
+<p>注意：这里必须加上仓库的完整路径（/home/svn/repo）, 而svn://方式则不用。</p>
+<h3 id="http"><a href="#http" class="headerlink" title="http://"></a>http://</h3><p>需要安装并配置Apache2 web server。</p>
+<p>安装Apache2：</p>
+<pre><code class="hljs bash">sudo apt-get install apache2</code></pre>
+<p>配置Apache2：</p>
+<p>在<code>etc/apache2/mods_available/dav_svn.conf</code>文件中添加以下代码：</p>
+<pre><code class="hljs bash">&lt;Location /home/svn/repo&gt;
+    DAV svn
+    SVNPath /home/svn/repo
+    AuthType Basic
+    AuthName <span class="hljs-string">&quot;subversion repository&quot;</span>
+    AuthUserFile /etc/subversion/passwd
+    Require valid-user
+&lt;/Location&gt;</code></pre>
+<p>添加Apache2用户www-data并加入到subversion组中：</p>
+<pre><code class="hljs bash">sudo adduser www-data subversion</code></pre>
+<p>重启Apache2服务：</p>
+<pre><code class="hljs bash">sudo /etc/init.d/apache2 restart</code></pre>
+<p>创建用户和密码文件（<code>/etc/subversion/passwd</code>）：</p>
+<pre><code class="hljs bash">sudo htpasswd -c /etc/subversion/passwd peng</code></pre>
+<p>按照提示输入密码即可。<br>通过下面的命令可添加新用户（new_user）：<br><pre><code class="hljs bash">sudo htpasswd /etc/subversion/passwd new_user</code></pre></p>
+<p>配置完成，通过下方指令即可获取svn服务器仓库中的资源：</p>
+<pre><code class="hljs bash">svn co http://hostname/home/svn/repo repo --username peng</code></pre>
+<h3 id="https"><a href="#https" class="headerlink" title="https://"></a>https://</h3><p>设置同http://，但是需要为Apache2配置支持https的数字证书（略）。</p>
+<p>然后通过下方指令即可获取svn服务器仓库中的资源：</p>
+<pre><code class="hljs bash">svn co https://hostname/home/svn/repo repo --username peng</code></pre>
+<h2 id="RabbitVCS"><a href="#RabbitVCS" class="headerlink" title="RabbitVCS"></a>RabbitVCS</h2><p>RabbitVCS是Linux平台下版本控制程序Subversion的GUI前端客户端，使用Python构建，可以与文件管理器Nautilus紧密整合，支持 Subversion(SVN), Git。可替代Windows下的TortoiseSVN。</p>
+<p>Ubuntu用户安装:<br><pre><code class="hljs bash">sudo add-apt-repository ppa:rabbitvcs/ppa
+sudo apt-get update
+sudo apt-get install rabbitvcs-core rabbitvcs-cli rabbitvcs-nautilus rabbitvcs-gedit</code></pre></p>
+<p>最后输入以下命令重启Nautilus就可以使用RabbitVCS了。</p>
+<pre><code class="hljs bash">nautilus -q
+nautilus</code></pre>
+<hr>
+<h2 id="svn常用命令"><a href="#svn常用命令" class="headerlink" title="svn常用命令"></a>svn常用命令</h2><p>以下访问服务器方式均以file:///home/svn/repo为例。</p>
+<p><strong><code>import</code></strong>: 将项目上传到svn服务器，跟commit对应，是将未版本化的文件导入版本库中的最快方法，它会根据需要创建中介目录。</p>
+<pre><code class="hljs bash">svn import myrepo file:///home/svn/repo -m <span class="hljs-string">&quot;Initial import&quot;</span></code></pre>
+<p><strong><code>export</code></strong>: 将项目从服务器导出到本地，跟checkout对应，但是导出的文件夹不含.svn目录，脱离svn版本控制。</p>
+<pre><code class="hljs bash">svn <span class="hljs-built_in">export</span> -r version file:///home/svn/repo</code></pre>
+<p>（通过 <em><code>-r version</code></em> 导出指定版本，不加则默认导出最新版本。）</p>
+<p><strong><code>checkout</code></strong>: 从服务器仓库下载项目到本地，成为本地工作副本。<br><pre><code class="hljs bash">svn checkout file:///home/svn/repo -r version
+或者
+svn co -r version file:///home/svn/repo</code></pre><br>（通过 <em><code>-r version</code></em> 导出指定版本，不加则默认下载最新版本。）</p>
+<p><strong><code>trunk, branches, tags</code></strong> 三大目录：</p>
+<p>　trunk: 主干，一般把项目提交到此文件夹里面,在trunk中开发。<br>　branches: 分支，一般把那些需要打分支,但是有可能会修改的项目代码，打分支到此目录。<br>　tags: 分支，一般把那些阶段性(如迭代各期)的项目代码,打分支到此目录。</p>
+<p>新建的svn仓库中没有这三个文件夹，可通过下面两种方式创建：</p>
+<ol>
+<li>将项目从服务器下载到本地，进入生成的项目目录执行以下代码：</li>
+</ol>
+<pre><code class="hljs bash">svn mkdir trunk tags branches
+svn commit -m　<span class="hljs-string">&quot;Creating trunk, tags, branches&quot;</span></code></pre>
+<ol start="2">
+<li>如果不想将项目整个下载到本地，也可以直接使用一条命令创建并提交目录到svn服务器：</li>
+</ol>
+<pre><code class="hljs bash">svn mkdir file:///home/svn/repo/trunk -m <span class="hljs-string">&quot;Creating trunk dir&quot;</span></code></pre>
+<p>另外两个目录使用同样的方式进行创建并提交。</p>
+<p><strong><code>status</code></strong>: 查看工作副本状态。</p>
+<pre><code class="hljs bash">svn status</code></pre>
+<p>第一列表示文件的状态：<br>　，没有修订<br>　A，添加<br>　C，冲突，需要解决冲突状态，才能正常提交代码<br>　D，删除<br>　I，忽略<br>　M，有修改<br>　?，没有版本控制，在工作副本添加文件或目录之后，需要使用svn add your_path才能加该文件加到版本控制<br>　!，文件丢失，如果不是使用svn delete删除文件或目录，会产生此状态</p>
+<p><strong><code>info</code></strong>: 查看工作副本信息。</p>
+<pre><code class="hljs bash">svn info</code></pre>
+<p>能够查看到本工作副本的url、版本等信息。</p>
+<p><strong><code>update</code></strong>: 升级到新版本。</p>
+<pre><code class="hljs bash">svn update -r verison</code></pre>
+<p><strong><code>add</code></strong>: 添加新文件或者目录到版本控制。</p>
+<pre><code class="hljs bash">svn add file
+svn add dir</code></pre>
+<p><strong><code>delete</code></strong>: 删除文件或目录。</p>
+<pre><code class="hljs bash">svn delete file
+svn delete dir</code></pre>
+<p>如果仅仅是手动使用rm命令或窗口下删除工作副本内的文件或目录，该删除并不会记录svn的状态。可能会导致提交代码时，遗漏了删除文件或目录。因此建议删除svn工作副本内的文件或目录时，使用本命令进行操作。</p>
+<p><strong><code>commit</code></strong>: 提交代码。</p>
+<pre><code class="hljs bash">svn commit [-m message] [file_list]</code></pre>
+<p>如果没有带文件列表，默认把工作副本的所有修订都提交，如果有带文件列表，则只提交文件列表中对应文件的修订。</p>
+<p><strong><code>merge</code></strong>: 合并代码。</p>
+<pre><code class="hljs bash">svn merge -r ver1:ver2 src_url working_copy_path</code></pre>
+<p>可将任意版本的任意修订合并到工作副本中。如果ver1小于ver2，表示合并src_url分支ver1到ver2的修订到本地工作副本；如果ver1大于ver2，表示回退修订。</p>
+<p><strong><code>revert</code></strong>: 回退工作副本的修订。<br><pre><code class="hljs bash">svn revert file
+svn revert -R dir</code></pre></p>
+<p><strong><code>log</code></strong>: 查看版本log。</p>
+<pre><code class="hljs bash">svn <span class="hljs-built_in">log</span> [OPTIONS] [FILE_LIST]</code></pre>
+<p>默认只查看工作副本及以前版本的log，可以使用参数过滤得到我们想要的内容，详情请见 <em><code>svn log --help</code></em> 。</p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://help.ubuntu.com/community/Subversion">Subversion</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0a8cf8bcdacc">SVN基础用法</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/6b83b6f2cace">Ubuntu搭建svn服务器</a></li>
+<li><a target="_blank" rel="noopener" href="http://ourjs.com/detail/5b1ca77b7ad90c6e47f34b72">Linux搭建SVN服务器，并设置开机默认启动</a></li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%EF%BC%88git-svn%EF%BC%89/">版本控制（git svn）</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/svn/">svn</a>
+                    
+                      <a class="hover-with-bg" href="/tags/tutorial/">tutorial</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/13/Machine-Learning/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">机器学习（Machine Learning）学习总结</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/02/git/">
+                        <span class="hidden-mobile">git的安装与使用</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      function loadDisqus() {
+        var disqus_config = function () {
+          this.page.url = 'https://mengepeng.github.io/2020/08/03/svn/';
+          this.page.identifier = '/2020/08/03/svn/';
+        };
+        (function () {
+          var d = document,
+            s = d.createElement('script');
+          s.src = '//' + 'https-mengepeng-github-io' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      }
+      waitElementVisible('disqus_thread', loadDisqus);
+    </script>
+    <noscript>Please enable JavaScript to view the
+      <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener noopener">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a style="font-size:13px">
+	&copy; <script>document.write(new Date().getFullYear());</script>, Content By Meng Peng. All Rights Reserved.
+      </a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            Totol visits 
+            <span id="busuanzi_value_site_pv"></span>
+             
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            Total visitors 
+            <span id="busuanzi_value_site_uv"></span>
+             
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "svn的安裝与使用&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 60,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+  <script>(function (i, s, o, g, r, a, m) {
+      i['DaoVoiceObject'] = r;
+      i[r] = i[r] ||
+        function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        };
+      i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      a.charset = 'utf-8';
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/bb4fe40f.js", 'daovoice');
+    daovoice('init', {
+      app_id: "bb4fe40f",
+    });
+    daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
